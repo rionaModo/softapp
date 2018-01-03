@@ -4,5 +4,5 @@ var port=config.get('port');
 console.log('sss');
 console.log(port);
 process.env.PORT=port;
-require('./app/library/db/collect.js');
+//require('./app/library/db/collect.js');
 //process.env.src_dir=portrer;

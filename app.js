@@ -12,7 +12,9 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
-app.set('view engine', 'jade');
+//app.set('view engine', 'ejs');
+app.engine('.html', require('ejs').__express);
+app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -20,6 +22,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+setwebpack(app);
 app.use(express.static(path.join(__dirname, 'app/public')));
 
 app.use('/', index);
@@ -43,5 +46,41 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-//require('./test');
+
+
+
+
+function setwebpack(app){
+  var webpack = require('webpack'),
+    webpackDevMiddleware = require('webpack-dev-middleware'),
+  //webpackHotMiddleware = require('webpack-hot-middleware'),
+    webpackDevConfig = require('./webpack.config.js');
+
+  var compiler = webpack(webpackDevConfig);
+
+// attach to the compiler & the server
+
+  var options={
+    publicPath: webpackDevConfig.output.publicPath,
+    watchOptions: {
+      aggregateTimeout: 2e3,
+      poll: true
+    },
+    noInfo: false,
+    lazy: true
+  }
+  var optins2= {
+
+    // public path should be the same with webpack config
+    publicPath: webpackDevConfig.output.publicPath,
+    noInfo: true,
+    stats: {
+      colors: true
+    }
+  }
+  app.use(webpackDevMiddleware(compiler,options));
+}
+//app.use(webpackHotMiddleware(compiler))
+
+require('./test');
 module.exports = app;
