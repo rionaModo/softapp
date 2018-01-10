@@ -1,5 +1,9 @@
-/**
- * Created by danlu on 2017/12/19.
- */
-//require('./library/db/collect.js')
-var a='sss';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import App from './src/App.jsx';
+
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+
