@@ -28,29 +28,40 @@ module.exports = {
       }
     ]
   }*/
+  module:{
+    rules:[
+      {
+        test:/\.js?$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: "babel-loader",
+          options: { presets: ["react","es2015"] }
+        }],
+      },
+      { test: /\.css$/, loader: "style-loader!css-loader" }
+
+    ]
+  },
+  resolve:{
+    modules: ['./node_modules']
+  }
 
 
-
- 
+/*
   module: {
-    loaders: [
-      {test:/\.jsx$/, loaders:['jsx?harmony']}
-    ],
+
     //使用ES6时，才需要添加此loaders
     loaders:[
+      { test: /\.css$/, loader: "style-loader!css-loader" },
       {
-        test: /\.jsx?$/,
-        loader: 'babel',
-     //   include: ROOT_PATH,
-        query: {
-          //添加两个presents 使用这两种presets处理js或者jsx文件
-          presets: ['es2015', 'react']
-        }
+        test: /\.js$/,
+        loader: 'babel'
+
       }
     ]
   },
    babel: {
     presets: ['es2015','stage-3'],
-    plugins: ['transform-runtime']
-  },
+   // plugins: ['transform-runtime']
+  }*/
 };
