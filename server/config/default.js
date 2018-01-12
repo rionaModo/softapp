@@ -3,7 +3,7 @@ module.exports = {
   "server":{},
   "mongodb":{},
   "app":{
-    "port":9051,
+    "port":9000,
     "source_dir":[__dirname,'app', 'config'].join('/')
   }
 }

@@ -1,8 +1,8 @@
 var path=require('path');
 module.exports = {
-  entry: "./app/main.js",
+  entry: "./client/main.jsx",
   output: {
-    path: path.join(__dirname, '/app/public/js'),
+    path: path.join(__dirname, '/client/public/js'),
     filename: "bundle.js",
     publicPath:'/js/'
 
@@ -31,20 +31,23 @@ module.exports = {
   module:{
     rules:[
       {
-        test:/\.js?$/,
+        test:/\.jsx?$/,
         exclude: /node_modules/,
         use: [{
           loader: "babel-loader",
           options: { presets: ["react","es2015"] }
         }],
       },
-      { test: /\.css$/, loader: "style-loader!css-loader" }
+      { test: /\.css$/,
+        use:["style-loader","css-loader"]
+      }
 
     ]
   },
   resolve:{
     modules: ['./node_modules']
-  }
+  },
+  devtool:'#source-map'
 
 
 /*
@@ -65,3 +68,6 @@ module.exports = {
    // plugins: ['transform-runtime']
   }*/
 };
+
+
+//module.exports.devtool = '#source-map';
