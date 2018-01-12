@@ -5,13 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./app/routes/index');
-var users = require('./app/routes/users');
+var index = require('./server/routes/index');
+var users = require('./server/routes/users');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'app/views'));
+app.set('views', path.join(__dirname, './server/views'));
 //app.set('view engine', 'ejs');
 app.engine('.html', require('ejs').__express);
 app.set('view engine', 'html');
@@ -23,10 +23,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 setwebpack(app);
-app.use(express.static(path.join(__dirname, 'app/public')));
+app.use(express.static(path.join(__dirname, './client/public')));
 
-app.use('/', index);
-app.use('/users', users);
+app.use('*', index);
+
 //app.use('/VC', contro);
 //app.use('/VR', router);
 // catch 404 and forward to error handler
