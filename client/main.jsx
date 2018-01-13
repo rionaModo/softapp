@@ -6,8 +6,6 @@ import ReactDOM from 'react-dom';
 import App from './src/App.jsx';
 
 
-ReactDOM.render(<App >
-
-</App>, document.getElementById('app'));
+ReactDOM.render(<App ></App>, document.getElementById('app'));
 
 

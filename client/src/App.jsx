@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import Router from '../router.jsx';
 //import logo from './logo.svg';
-//import './App.css';
+import  Header from './header.jsx';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-        </header>
-
+        <Header></Header>
         <Router></Router>
       </div>
     );

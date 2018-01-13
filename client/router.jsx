@@ -8,7 +8,6 @@ import about from './src/views/about/about.jsx';
 class router extends Component {
   render() {
     return (
-
         <Router>
           <div>
               <Route path="/" component={index}></Route>
@@ -16,7 +15,6 @@ class router extends Component {
               <Route path="message" component={message}/>
           </div>
         </Router>
-
     );
   }
 }
