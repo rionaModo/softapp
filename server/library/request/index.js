@@ -7,5 +7,5 @@ request('http://www.baidu.com', function (error, response, body) {
 })
 
 
-request('https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2208082549,1989069819&fm=58').pipe(fs.createWriteStream('./doodle.png'));
-request.get('https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2208082549,1989069819&fm=58').pipe(request.put('http://localhost:9051/imgdev.png'))
+//request('http://static.danlu.com/20180111/mall/optimization/resources/images/home/newIndex/icon_liquor.png').pipe(fs.createWriteStream('./doodle.png'));
+request.get('http://static.danlu.com/20180111/mall/optimization/resources/images/home/newIndex/icon_liquor.png').pipe(request.put('http://localhost:9051/images/doodle.png'))
