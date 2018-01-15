@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
-//import './App.css';
+//import './about.less';
 
-class header extends Component {
+class App extends Component {
   render() {
     return (
-      <div >
-        header.jsx
+      <div className="App">
+        about
       </div>
     );
   }
 }
 
-export default header;
+export default App;
