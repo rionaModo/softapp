@@ -3,7 +3,7 @@ var nodePath = require('path')
 module.exports = {   
   // 服务器本身配置
   "fa": {
-    "port": 9501, //运行端口
+    "port": 9000, //运行端口
     "view": {
       //模板后缀名
       "ext": "tpl",
