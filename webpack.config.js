@@ -38,12 +38,12 @@ module.exports = {
           options: { presets: ["react","es2015"] }
         }],
       },
-      { test: /\.css|\.less$/,
+      { test: /\.(css|less)$/,
         use:["style-loader","css-loader","less-loader"],
-        options:{
+        /*options:{
           modules:true
         }
-
+*/
       }
 
     ]

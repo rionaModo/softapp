@@ -30,6 +30,8 @@
     "webpack-dev-middleware": "^2.0.3"
   },
   "devDependencies": {
-
+    "css-loader": "^0.28.8",
+    "react-css-modules": "^4.7.1",
+    "style-loader": "^0.19.1"
   }
 }
