@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link,Route,BrowserRouter as Router} from 'react-router-dom';
-import index from './src/views/index.jsx';
-import message from './src/views/message.jsx';
+import index from './src/views/index/index.jsx';
+import message from './src/views/message/message.jsx';
 
 import about from './src/views/about/about.jsx';
 //  <Route path="/" component={index}></Route>
