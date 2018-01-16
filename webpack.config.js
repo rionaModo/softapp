@@ -1,6 +1,6 @@
 var path=require('path');
 module.exports = {
-  entry: "./client/main.jsx",
+  entry: "./client/main.js",
   output: {
     path: path.join(__dirname, '/client/public/js'),
     filename: "bundle.js",
@@ -31,12 +31,22 @@ module.exports = {
   module:{
     rules:[
       {
-        test:/\.jsx?$/,
+        test:/\.vue?$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: "vue-loader"
+        }],
+      },
+      {
+        test:/\.js?$/,
         exclude: /node_modules/,
         use: [{
           loader: "babel-loader",
-          options: { presets: ["react","es2015"] }
-        }],
+          options: { presets: ["es2015"] }
+        },{
+          loader: "vue-loader"
+        }
+      ],
       },
       { test: /\.(css|less)$/,
         use:["style-loader","css-loader","less-loader"],

@@ -26,7 +26,7 @@ setwebpack(app);
 
 //app.use('*', index);
 app.use(express.static(path.join(__dirname, './client/public')));
-app.use('/test', require('./server/routes/test'));
+//app.use('/test', require('./server/routes/test'));
 app.use('*', index);
 
 //app.use('/VC', contro);
