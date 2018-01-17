@@ -3,57 +3,31 @@ module.exports = {
   entry: "./client/main.js",
   output: {
     path: path.join(__dirname, '/client/public/js'),
-    filename: "bundle.js",
+    filename: "bundles.js",
     publicPath:'/js/'
 
   },
-  /*module: {
-    loaders: [
-      { test: /\.css$/, loader: "style-loader!css-loader" },
-      { test: /\.jsx$/, loaders: 'jsx-loader' },
-      {
-        test: /\.js$/, loaders: 'babel-loader',
-        query: {
-          //添加两个presents 使用这两种presets处理js或者jsx文件
-          presets: ['es2015', 'react']
-        }
-      },
-      {
-        test: /\.js$/,
-        loaders: 'jsx-loader',
-        query: {
-          //添加两个presents 使用这两种presets处理js或者jsx文件
-          presets: ['es2015', 'react']
-        }
-      }
-    ]
-  }*/
   module:{
     rules:[
       {
         test:/\.vue?$/,
         exclude: /node_modules/,
-        use: [{
-          loader: "vue-loader"
-        }],
+        loader: "vue-loader"
       },
       {
         test:/\.js?$/,
         exclude: /node_modules/,
         use: [{
           loader: "babel-loader",
-          options: { presets: ["es2015"] }
-        },{
-          loader: "vue-loader"
+          options: {
+            presets: ["es2015","stage-3"],
+  //          plugins: ['transform-runtime']
+          }
         }
       ],
       },
       { test: /\.(css|less)$/,
-        use:["style-loader","css-loader","less-loader"],
-        /*options:{
-          modules:true
-        }
-*/
+        use:["style-loader","css-loader","less-loader"]
       }
 
     ]
