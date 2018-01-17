@@ -1,7 +1,7 @@
 <template>
   <div id="About" class="about">
     About
-dddd
+ddddeeee
 ddd 
 
 
@@ -24,6 +24,6 @@ ddd
 
 <style scoped>
  .about{
-   background: url("/images/doodle.png") no-repeat;
+   background: url("/static/images/doodle.png") no-repeat;
  }
 </style>
