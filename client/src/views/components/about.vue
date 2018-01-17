@@ -1,8 +1,8 @@
 <template>
-  <div id="About">
+  <div id="About" class="about">
     About
-
-
+dddd
+ddd 
 
 
 
@@ -19,15 +19,11 @@
 
     }
   }
+  /*background: url("/public/images/doodle.png") no-repeat;*/
 </script>
 
-<style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
+<style scoped>
+ .about{
+   background: url("/images/doodle.png") no-repeat;
+ }
 </style>

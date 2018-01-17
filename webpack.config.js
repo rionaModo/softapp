@@ -1,9 +1,10 @@
 var path=require('path');
 module.exports = {
   entry: "./client/main.js",
+ // context: path.join(__dirname, 'client'),
   output: {
     path: path.join(__dirname, '/client/public/js'),
-    filename: "bundles.js",
+    filename: "bundle.js",
     publicPath:'/js/'
 
   },
@@ -28,7 +29,15 @@ module.exports = {
       },
       { test: /\.(css|less)$/,
         use:["style-loader","css-loader","less-loader"]
-      }
+      },
+     /* { test: /\.(png|jpg)$/,
+        use:[  {
+          loader: 'url-loader',
+          options: {
+            limit: '1024'
+          }
+        }]
+      }*/
 
     ]
   },
