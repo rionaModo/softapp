@@ -30,14 +30,14 @@ module.exports = {
       { test: /\.(css|less)$/,
         use:["style-loader","css-loader","less-loader"]
       },
-     /* { test: /\.(png|jpg)$/,
+      { test: /\.(png|jpg)$/,
         use:[  {
           loader: 'url-loader',
           options: {
             limit: '1024'
           }
         }]
-      }*/
+      }
 
     ]
   },
