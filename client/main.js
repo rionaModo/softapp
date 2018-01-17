@@ -5,7 +5,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './router'
 import App from './src/views/App.vue'
+import axios from 'axios'
 
+
+
+Vue.prototype.$http = axios
 window.Vue=Vue;
 Vue.use(VueRouter)
 const router = new VueRouter({
