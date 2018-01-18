@@ -11,11 +11,13 @@ module.exports= function(conf){
   return session({
     name: identityKey,
     secret: 'softappseesion',  // 用来对session id相关的cookie进行签名
-    store: new FileStore({ "path": "./tmp/session"}),  // 本地存储session（文本文件，也可以选择其他store，比如redis的）
+    store: new FileStore({
+      "path": "./tmp/session",
+       "ttl" : 1800}),  // 本地存储session（文本文件，也可以选择其他store，比如redis的）
     saveUninitialized: false,  // 是否自动保存未初始化的会话，建议false
     resave: false,  // 是否每次都重新保存会话，建议false
     cookie: {
-      maxAge: 1800 * 1000,  // 有效期，单位是毫秒  半小时,
+    //  maxAge: 1800 * 1000,  // 有效期，单位是毫秒  半小时,
       "secure": false
     }
   })
