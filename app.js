@@ -5,10 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./server/routes/index');
-var users = require('./server/routes/users');
+var router=require('./server/router');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, './server/views'));
@@ -24,30 +24,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 setwebpack(app);
 
-//app.use('*', index);
+app.use(router);
+
+
 app.use('/static',express.static(path.join(__dirname, './client/public')));
-//app.use('/test', require('./server/routes/test'));
-app.use('*', index);
 
-//app.use('/VC', contro);
-//app.use('/VR', router);
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+
+
 
 
 
