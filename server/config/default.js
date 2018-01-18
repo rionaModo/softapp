@@ -1,8 +1,10 @@
 module.exports = {
   "app":{
     "port":9051,
-    "mongodb":{
-
+    middleware:{
+      session:{
+        sId:"node_session"
+      }
     }
   }
 }

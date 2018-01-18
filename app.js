@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var router=require('./server/router');
+var config=require('./cfg');
 var app = express();
 
 
@@ -21,6 +22,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+/*加载中间件*/
+var mwConfig=config.get('app.middleware');
+require('./server/lib/middleware')(app,mwConfig);
+
 setwebpack(app);
 
 app.use(router);
@@ -68,5 +73,5 @@ function setwebpack(app){
 }
 //app.use(webpackHotMiddleware(compiler))
 
-require('./test');
+
 module.exports = app;
