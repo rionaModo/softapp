@@ -1,4 +1,4 @@
-# softapp 是基于node、express、vue的单页面应用，采用mongodb作为数据库，是一个完整的具有操作业务的工作
+# softapp 是基于node、express、vue的单页面应用，采用mongodb作为数据库，是一个完整的具有操作业务的工程
 # 配置文件路径：
 server\config\default.js
 
