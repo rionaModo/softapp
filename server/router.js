@@ -5,7 +5,14 @@ var router=express.Router();
 
  // var users = require('./server/routes/users');
  //
-  router.get('/test', function(r,s,n){console.log(1);next()},function(r,s,n){console.log(2);s.send('Update the book');});
+/*  router.get('/test', function(req, res, next) {
+      console.log('Request URL:', req.originalUrl);
+      next();
+    }, function (req, res, next) {
+      console.log('Request Type:', req.method);
+    res.send('Something broke!');
+    }
+  );*/
   router.use(require('./routes/index'));
 
 
