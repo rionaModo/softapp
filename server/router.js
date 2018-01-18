@@ -15,7 +15,7 @@ var router=express.Router();
   );*/
 
 
-  router.use('/api',require('./routes/index'));
+  router.use(['/api/:c/:a','/api/:c','/api',],require('./lib/middleware/api'));
   router.use(require('./routes/index'));
 
 
