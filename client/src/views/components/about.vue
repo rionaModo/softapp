@@ -5,7 +5,7 @@
 ddddeeee
 ddd 
 
-{{img}}
+{{user.msg}}
 
   </div>
 </template>
@@ -21,8 +21,34 @@ ddd
     },
     data:function () {
       return {
-        img:'s'
+        img:'s',
+        user:{
+          msg:''
+        }
       }
+    },
+    methods:{
+      getData:function(){
+        var that=this;
+        this.$http.get('/api/user',{
+              params:{
+                ID:12345
+              }
+            })
+            .then(function({data,status,statusText}){
+               if(status==200){
+                 that.$set(that,'user',data)
+               }
+            })
+            .catch(function(err){
+            //  console.log(err);
+            });
+      }
+    },
+    beforeRouteEnter:function(to,from,next){
+      next(vm => {
+        vm.getData();
+      })
     }
   }
   /*background: url("/public/images/doodle.png") no-repeat;*/
