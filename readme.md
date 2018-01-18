@@ -2,8 +2,8 @@
 #配置文件路径：
 server\config\default.js
 
-#端口配置  ：
-在配置文件中将端口port 的值进行修改 
+#端口配置  ：默认9051
+在配置文件中将端口port 的值进行修改
 
 
 操作：
@@ -11,6 +11,8 @@ server\config\default.js
  npm install
 #2.启动工程
 npm start
+
+访问例子：http://localhost:9051/foo
 
 
 
