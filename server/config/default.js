@@ -3,7 +3,8 @@ module.exports = {
     "port":9051,
     middleware:{
       session:{
-        sId:"node_session"
+        sId:"node_session",
+        "path": "./tmp/session"
       }
     }
   }

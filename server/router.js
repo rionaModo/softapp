@@ -14,7 +14,10 @@ var router=express.Router();
     }
   );*/
 
-
+router.use(function(req, res, next){
+   console.log(req.session);
+  next();
+});
   router.use(['/api/:c/:a','/api/:c','/api',],require('./lib/middleware/api'));
   router.use(require('./routes/index'));
 
