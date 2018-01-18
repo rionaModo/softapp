@@ -21,12 +21,12 @@ app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser({"secret": "zmskUKsl*^%"}));
-/*app.use(cookieParser("conf.secret",  {
+//app.use(cookieParser({"secret": "zmskUKsl*^%"}));
+app.use(cookieParser("conf.secret",  {
   "options": {
     "secret": "zmskUKsl*^%"
   }
-}));*/
+}));
 
 /*加载中间件*/
 var mwConfig=config.get('app.middleware');
@@ -50,8 +50,11 @@ app.use(session({
    // maxAge: 10 * 1000  // 有效期，单位是毫秒
   }
 }),function(req,res,next){
+  console.log('req.sessionID',req.sessionID);
+
   console.log(req.session);
   console.log(req.cookies);
+  req.session.loginUser='nihaoaoao';
   if(!req.session){
     next(new Error("Session GateWay Error"));
     return;
