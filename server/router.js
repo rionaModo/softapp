@@ -13,6 +13,9 @@ var router=express.Router();
     res.send('Something broke!');
     }
   );*/
+
+
+  router.use('/api',require('./routes/index'));
   router.use(require('./routes/index'));
 
 
