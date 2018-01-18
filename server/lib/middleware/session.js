@@ -4,8 +4,8 @@
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 
-module.exports= function(app,identityKey){
-  var identityKey =identityKey|| 'JSSESSION';
+module.exports= function(app,conf){
+  var identityKey =conf.sId|| 'JSSESSION';
   app.use(session({
     name: identityKey,
     secret: 'softappseesion',  // 用来对session id相关的cookie进行签名
