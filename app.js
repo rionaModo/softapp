@@ -22,6 +22,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser({"secret": "zmskUKsl*^%"}));
+/*app.use(cookieParser("conf.secret",  {
+  "options": {
+    "secret": "zmskUKsl*^%"
+  }
+}));*/
+
 /*加载中间件*/
 var mwConfig=config.get('app.middleware');
 //require('./server/lib/middleware')(app,mwConfig);
