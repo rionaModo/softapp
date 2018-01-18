@@ -3,5 +3,6 @@ var middleware={
   session:require('./session')
 }
 module.exports= function(app,config){
-  middleware.session(app,config.session)
+  app.use(middleware.session(config.session))
+//  middleware.session(app,config.session)
 }
