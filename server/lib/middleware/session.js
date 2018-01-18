@@ -9,8 +9,8 @@ module.exports= function(conf){
  /* console.log(identityKey);
   app.use();*/
   return session({
-    name: identityKey,
-    secret: 'softappseesion',  // 用来对session id相关的cookie进行签名
+    name: 'FA_SID',
+    secret: 'FA_SESSION',  // 用来对session id相关的cookie进行签名
     store: new FileStore({
       "path": "./tmp/session",
        "ttl" : 1800
