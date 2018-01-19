@@ -3,8 +3,12 @@ module.exports = {
     "port":9051,
     middleware:{
       session:{
-        sId:"node_session",
-        "path": "./tmp/session"
+        name:"sKeyy",
+        store:{
+          path: "./tmp/session",
+          ttl : 1800
+        },
+        secret:'softapp'
       }
     }
   }

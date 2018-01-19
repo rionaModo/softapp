@@ -22,39 +22,23 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser({"secret": "zmskUKsl*^%"}));
-app.use(cookieParser("conf.secret",  {
-  "options": {
-    "secret": "zmskUKsl*^%"
-  }
-}));
+app.use(cookieParser('mysoftapp'));
 
 /*加载中间件*/
 var mwConfig=config.get('app.middleware');
-//require('./server/lib/middleware')(app,mwConfig);
+require('./server/lib/middleware')(app,mwConfig);
 
 
 
-var session = require('express-session');
-var FileStore = require('session-file-store')(session);
 
-var identityKey = 'skey';
-
-app.use(session({
-  name: identityKey,
-  secret: 'chyingp',  // 用来对session id相关的cookie进行签名
-  store: new FileStore(),  // 本地存储session（文本文件，也可以选择其他store，比如redis的）
-  saveUninitialized: false,  // 是否自动保存未初始化的会话，建议false
-  resave: false,  // 是否每次都重新保存会话，建议false
-  cookie: {
-    "secure": false
-   // maxAge: 10 * 1000  // 有效期，单位是毫秒
-  }
-}),function(req,res,next){
+app.use(function(req,res,next){
   console.log('req.sessionID',req.sessionID);
 
   console.log(req.session);
   console.log(req.cookies);
-  req.session.loginUser='nihaoaoao';
+  console.log('req.signedCookies ',req.signedCookies);
+  res.cookie('cart','nihao', { signed: true })
+    req.session.loginUser='nihaoaoao';
   if(!req.session){
     next(new Error("Session GateWay Error"));
     return;
