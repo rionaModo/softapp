@@ -2,8 +2,7 @@
 <template>
   <div id="About" class="about">
     About
-ddddeeee
-ddd 
+
 
 {{user.msg}}
 
