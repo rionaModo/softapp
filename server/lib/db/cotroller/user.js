@@ -6,7 +6,10 @@ var db = mongoose.connection;
 const user=require('../model/user');
 const action={
   index:function(db,Schema){
-
+   var opx=function(req,res,next,call) {
+    res.json(fluffy);
+    return opx;
+   }
   },
    userInfo:function(Schema){
     console.log('Schema',Schema);
@@ -29,27 +32,10 @@ module.exports=function(req,res,next,call){
   var Schema=user[params.a]();
   return action[params.a](Schema)(req,res,next,call);
  }else {
-  onActionErr();
+  res.json({
+   status:-1,
+   msg:"没有对应的操作!"
+  });
  }
 }
 
-function onActionErr(type){
- var type=type||null;
- switch (type){
-  case 1://control 没有对应的操作
-   return {
-    status:-1,
-    msg:"没有对应的操作!"
-   }
-  case 2: //control 操作数据库失败
-   return {
-    status:-1,
-    msg:"操作数据库失败!"
-   }
-  default:
-   return {
-    status:-1,
-    msg:"操作失败!"
-   }
- }
-}
