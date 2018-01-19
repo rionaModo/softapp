@@ -9,7 +9,17 @@ module.exports = {
           ttl : 1800
         },
         secret:'softapp'
+      },
+      cookieParser:{
+        secret:'mysoftapp'
+      },
+      bodyParser:{
+        json:{},
+        urlencoded:{
+          extended: false
+        }
       }
+
     }
   }
 }
