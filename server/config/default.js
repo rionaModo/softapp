@@ -1,6 +1,11 @@
 module.exports = {
   "app":{
     "port":9051,
+    webpack:true,
+    mongodb:{
+      disabled:false
+    },
+    request:false,
     middleware:{
       session:{
         name:"sKeyy",

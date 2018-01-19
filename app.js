@@ -2,8 +2,7 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-//var cookieParser = require('cookie-parser');
-//var bodyParser = require('body-parser');
+
 
 
 var config=require('./cfg');
@@ -28,6 +27,7 @@ require('./server/lib/middleware')(app,mwConfig);
 
 
 app.use(function(req,res,next){
+
   console.log('req.sessionID',req.sessionID);
 
   console.log(req.session);
@@ -62,6 +62,7 @@ app.use('/static',express.static(path.join(__dirname, './client/public')));
 
 
 function setwebpack(app){
+  if(!config.get('app.webpack'))return
   var webpack = require('webpack'),
     webpackDevMiddleware = require('webpack-dev-middleware'),
   //webpackHotMiddleware = require('webpack-hot-middleware'),
