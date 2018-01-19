@@ -2,7 +2,9 @@
  *  链接数据库，对数据的操作来源cotroller
  */
 var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost:27017/softapp');
+var config=require('config');
+
+mongoose.connect(config.get('app.mongodb.url'));
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 

@@ -3,7 +3,9 @@ module.exports = {
     "port":9051,
     webpack:true,
     mongodb:{
-      disabled:false
+      //disabled:false,
+      url:'mongodb://localhost:27017/softapp',
+      options:{}
     },
     request:false,
     middleware:{
