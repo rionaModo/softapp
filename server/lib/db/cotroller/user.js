@@ -7,7 +7,7 @@ const user=require('../model/user');
 const action={
   index:function(db,Schema){
    var opx=function(req,res,next,call) {
-    res.json(fluffy);
+  //  res.json(fluffy);
     return opx;
    }
   },
@@ -18,9 +18,9 @@ const action={
     var opx=function(req,res,next,call){
      users.find(function (err, fluffy) {
       db.close();
+      call(fluffy);
       res.json(fluffy);
      })
-
     }
     return opx;
    }
