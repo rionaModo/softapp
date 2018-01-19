@@ -4,7 +4,7 @@
 var mongoose=require('mongoose');
 var config=require('config');
 
-mongoose.connect(config.get('app.mongodb.url'));
+mongoose.connect(config.get('app.mongodb.url'),config.get('app.mongodb.options')||{});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
