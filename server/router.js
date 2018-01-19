@@ -18,7 +18,15 @@ var router=express.Router();
    console.log(req.session);
   next();
 });*/
-  router.use(['/api/:c/:a','/api/:c','/api',],require('./lib/middleware/api'));
+//require('./lib/fn/api')
+
+router.use(['/api/:c/:a','/api/:c','/api'],require('./lib/fn/api'));
+/*  router.use(['/api/:c/:a','/api/:c','/api'],function(req, res, next){
+    res.json({
+      status:-1,
+      msg:"操作失败!"
+    });
+  });*/
   router.use(require('./routes/index'));
 
 

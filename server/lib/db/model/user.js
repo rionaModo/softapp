@@ -5,7 +5,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 var user={
-    userInfo:function(){
+    userInfo1:function(){
      return  new Schema({
        title: {
          type: String,
@@ -24,6 +24,9 @@ var user={
      }, {
        connection: 'Article', //模型名称,
      })
-    }
+    },
+  userInfo:function(){
+    return mongoose.Schema({name:String});
+  }
 }
 module.exports = user;
