@@ -7,21 +7,26 @@ var config=require('config');
 mongoose.connect(config.get('app.mongodb.url'),config.get('app.mongodb.options')||{});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
+/*db.on('open',function(){
+  console.log('db is open');
 
+});*/
+console.log('index is open');
 module.exports=function(req,res,next){
   var params=Object.assign({},req.params);
   if(params&&params.c){
-    const schemas=require('./model/'+params.c);
+    const model=require('./model/'+params.c);
     const cotrollers=require('./cotroller/'+params.c);
-    if(params.c&&params.a&&cotrollers[params.a]&&schemas[params.a]) {
-      var Schema = schemas[params.a]();
+    if(params.c&&params.a&&cotrollers[params.a]) {
       var cotroller=cotrollers[params.a]
+        db.on('open',function(){
+            cotroller(model,db)(req,res,next,function(data){
+                console.log('mongodb handle is ok！');
+            })
+        })
 
-     cotroller(Schema)(req,res,next,function(data){
-       console.log('mongodb handle is ok！');
-     })
-      var m= cotroller(Schema);
-      console.log('cotroller',m);
+    //  var m= cotroller(Schema);
+    //  console.log('cotroller',m);
     }else {
       res.json({
         status:-1,

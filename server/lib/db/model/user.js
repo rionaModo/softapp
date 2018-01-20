@@ -2,8 +2,8 @@
  * Created by danlu on 2018/1/18.
  */
 
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
 var user={
     userInfo1:function(){
      return  new Schema({
@@ -26,7 +26,10 @@ var user={
      })
     },
   userInfo:function(){
-    return mongoose.Schema({name:String});
+
+     return
   }
 }
-module.exports = user;
+
+var  Schema= mongoose.Schema({name:String});
+module.exports = mongoose.model('users',Schema,'users');

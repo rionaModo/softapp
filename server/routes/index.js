@@ -10,7 +10,6 @@ router.get('*', function(req, res, next) {
 
 //module.exports = router;
 module.exports = function(req, res, next) {
-  console.log('index');
-  res.render('index', { title: 'Express' });
-
+  console.log('render index is ok');
+      res.render('index', { title: 'Express' });
 };

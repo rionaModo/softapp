@@ -14,10 +14,7 @@ var router=express.Router();
     }
   );*/
 
-/*router.use(function(req, res, next){
-   console.log(req.session);
-  next();
-});*/
+
 //require('./lib/fn/api')
 
 router.use(['/api/:c/:a','/api/:c','/api'],require('./lib/fn/api'));
@@ -34,7 +31,7 @@ router.use(['/api/:c/:a','/api/:c','/api'],require('./lib/fn/api'));
 //app.use('/VC', contro);
 //app.use('/VR', router);
 // catch 404 and forward to error handler
-  router.use(function(req, res, next) {
+/*  router.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
@@ -48,7 +45,7 @@ router.use(['/api/:c/:a','/api/:c','/api'],require('./lib/fn/api'));
     // render the error page
     res.status(err.status || 500);
     res.render('error');
-  });
+  });*/
 
 
 

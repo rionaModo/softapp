@@ -1,6 +1,6 @@
 
 const mongoose=require('mongoose');
-var db = mongoose.connection;
+//var db = mongoose.connection;
 const action={
   index:function(Schema){
    var opx=function(req,res,next,call) {
@@ -8,9 +8,9 @@ const action={
     return opx;
    }
   },
-   userInfo:function(Schema){
-    var Schema = Schema||mongoose.Schema({});
-    var users=mongoose.model('test',Schema,'users');
+   userInfo:function(model,db){
+       console.log('userInfo is open');
+    var users=model;
     var opx=function(req,res,next,call){
      users.find(function (err, fluffy) {
       db.close();
