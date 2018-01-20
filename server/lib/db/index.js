@@ -3,11 +3,11 @@
  */
 var mongoose=require('mongoose');
 var config=require('config');
-if(typeof db=='undefined'){
+/*if(typeof db=='undefined'){
     mongoose.connect(config.get('app.mongodb.url'),config.get('app.mongodb.options')||{});
     global.db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
-}
+}*/
 
 /*db.on('open',function(){
   console.log('db is open');
@@ -15,6 +15,11 @@ if(typeof db=='undefined'){
 });*/
 console.log('index is open');
 module.exports=function(req,res,next){
+
+    mongoose.connect(config.get('app.mongodb.url'),config.get('app.mongodb.options')||{});
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+
   var params=Object.assign({},req.params);
   if(params&&params.c){
     const model=require('./model/'+params.c);

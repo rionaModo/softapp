@@ -13,7 +13,7 @@ const action={
     var users=model;
     var opx=function(req,res,next,call){
      users.find(function (err, fluffy) {
-   //   db.close();
+      db.close();
       call(fluffy);
       res.json(fluffy);
      })
