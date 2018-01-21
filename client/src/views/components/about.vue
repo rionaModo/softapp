@@ -23,7 +23,8 @@
         img:'s',
         user:{
           msg:''
-        }
+        },
+        userInfo:{}
       }
     },
     methods:{
@@ -37,6 +38,23 @@
             .then(function({data,status,statusText}){
                if(status==200){
                  that.$set(that,'user',data)
+               }
+            })
+            .catch(function(err){
+            //  console.log(err);
+            });
+
+
+
+
+             this.$http.get('/api/user/userInfo',{
+              params:{
+                ID:12345
+              }
+            })
+            .then(function({data,status,statusText}){
+               if(status==200){
+                 that.$set(that,'userInfo',data)
                }
             })
             .catch(function(err){
