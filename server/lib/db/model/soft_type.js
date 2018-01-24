@@ -22,7 +22,7 @@ var  Schema= mongoose.Schema({
     type:'String',
     default:0
   } //'启用状态(0：未启用，1：启用)',
-}, { collection: "soft_type" }); //
+}, { collection: "soft_type" ,versionKey: false}); //
 var model= mongoose.model('soft_type',Schema);
 Schema.method.validate=function(){}
 module.exports = model;
