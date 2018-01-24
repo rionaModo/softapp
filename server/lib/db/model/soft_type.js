@@ -24,4 +24,5 @@ var  Schema= mongoose.Schema({
   } //'启用状态(0：未启用，1：启用)',
 }, { collection: "soft_type" }); //
 var model= mongoose.model('soft_type',Schema);
+Schema.method.validate=function(){}
 module.exports = model;

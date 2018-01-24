@@ -9,13 +9,14 @@ const action={
     console.log('soft_type.create is open');
 
     var opx=function(req,res,next,call){
-      var query=Object.assign({},req.query);
+      var params=Object.assign({},req.query,req.body);
+
       var entity=new model({
-      //  soft_parent_code:params.soft_parent_code,
-        soft_name:query.soft_name||'',
+        soft_parent_code:params.soft_parent_code,
+        soft_name:params.soft_name||'',
       //  soft_name:'nihao'
         //soft_full_name:'String',
-        soft_status:query.soft_status //'启用状态(0：未启用，1：启用)',
+        soft_status:params.soft_status //'启用状态(0：未启用，1：启用)',
       })
      // entity.save().then((err, fluffy) => {});
       entity.save((err, fluffy) =>{
