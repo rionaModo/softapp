@@ -26,7 +26,7 @@ require('./server/lib/middleware')(app,mwConfig);
 
 
 
-app.use(function(req,res,next){
+/*app.use(function(req,res,next){
 
   console.log('req.sessionID',req.sessionID);
 
@@ -40,7 +40,7 @@ app.use(function(req,res,next){
     return;
   }
   next();
-});
+});*/
 
 
 //add router middleware
