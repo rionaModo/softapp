@@ -51,6 +51,27 @@ const action={
     }
     return opx;
   },
+  update:function(model,db){
+    console.log('soft_type.update is open');
+    var opx=function(req,res,next,call){
+      var params=Object.assign({},req.query,req.body);
+      var data={
+        id:params.id,
+        soft_name:params.soft_name
+     //   soft_status:params.soft_status //'启用状态(0：未启用，1：启用)',
+      };
+      /*{
+        "n": 1,
+        "nModified": 1,
+        "ok": 1
+      }*/
+      model.update({ _id: params.id }, { $set: { soft_name:params.soft_name }}, function(err,up){
+        res.json(up);
+      });
+
+    }
+    return opx;
+  },
   delete:function(model,db){
     console.log('soft_type.delete is open');
     var opx=function(req,res,next,call){
