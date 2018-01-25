@@ -5,7 +5,11 @@ module.exports = {
     mongodb:{
       //disabled:false,
       url:'mongodb://localhost:27017/softapp',
-      options:{}
+      options:{
+        keepalive: '5000',
+        poolSize: 4 ,
+        autoIndex:false
+      }
     },
     request:false,
     middleware:{
