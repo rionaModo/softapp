@@ -44,6 +44,9 @@ require('./server/lib/middleware')(app,mwConfig);
 
 
 //add router middleware
+//
+app.use('/static',express.static(path.join(__dirname, './public')));
+
 var router=require('./server/router');
 //add webpack middleware
 setwebpack(app);
@@ -51,7 +54,6 @@ setwebpack(app);
 app.use(router);
 
 
-app.use('/static',express.static(path.join(__dirname, './public')));
 
 
 
