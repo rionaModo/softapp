@@ -3,7 +3,7 @@ module.exports = {
   entry: "./client/main.js",
  // context: path.join(__dirname, 'client'),
   output: {
-    path: path.join(__dirname, '/client/public/js'),
+    path: path.join(__dirname, '/public/js'),
     filename: "bundle.js",
     publicPath:'/static/js/'
   },

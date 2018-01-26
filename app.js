@@ -51,7 +51,7 @@ setwebpack(app);
 app.use(router);
 
 
-app.use('/static',express.static(path.join(__dirname, './client/public')));
+app.use('/static',express.static(path.join(__dirname, './public')));
 
 
 
