@@ -9,18 +9,30 @@ var Schema = mongoose.Schema
 *
 * */
 var  Schema= mongoose.Schema({
-  soft_parent_code:{
-    type:'String',
-    default:0
-  },
-  soft_name:{
+  resource_name:{ //资源名字
     type:'String',
     required:true
   },
- // soft_full_name:'String',
-  soft_status:{
+  resource_type:{ //资源类型id
     type:'String',
-    default:0
+    required:true
+  },
+  resource_size:{//资源大小 单位M
+    type:'String'
+  },
+  resource_attr:{//资源大小 单位M
+    type:'String'
+  },
+  resource_web:{//官方网站
+    type:'String'
+  },
+  download_src:{
+    type:'Object'
+  },
+ // soft_full_name:'String',
+  soft_status:{//资源启用状态
+    type:'String',
+    default:1
   }, //'启用状态(0：未启用，1：启用)',
   createTime: {
     type: Date,
