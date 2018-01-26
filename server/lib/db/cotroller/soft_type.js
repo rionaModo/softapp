@@ -4,6 +4,7 @@
 
 const mongoose=require('mongoose');
 
+/*{"soft_name":"postceshiwww","soft_status":"1","soft_parent_code":"5a699870316412a0416773b3"}*/
 const action={
   create:function(model,db){
     console.log('soft_type.create is open');
