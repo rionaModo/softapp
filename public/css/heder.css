@@ -1,0 +1,18 @@
+.gengxin{
+	
+}
+ul.ff{
+	color: #fff;
+	height: 40px;
+	line-height: 40px;
+	padding:0 0 0 100px;
+	background-color: #436eee;
+}
+li.ggengxin-fubu{
+	list-style: none;
+	float: left;
+	margin: 0 20px 0 0;
+}
+li.ggengxin-fubu a{
+	color: #fff;
+}
