@@ -18,13 +18,10 @@ var router=express.Router();
 //require('./lib/fn/api')
 
 router.use(['/api/:c/:a','/api/:c','/api'],require('./lib/fn/api'));
-/*  router.use(['/api/:c/:a','/api/:c','/api'],function(req, res, next){
-    res.json({
-      status:-1,
-      msg:"操作失败!"
-    });
-  });*/
-  router.use(require('./routes/index'));
+router.use(['/$','/index.htm','/index.html'],require('./routes/index'));
+router.use(['/detail','/detail.htm','/detail.html'],require('./routes/detail'));
+
+  router.use(require('./routes/vue'));
 
 
 

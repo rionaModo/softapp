@@ -58,13 +58,8 @@ const action={
       var data={
         id:params.id,
         soft_name:params.soft_name
-     //   soft_status:params.soft_status //'启用状态(0：未启用，1：启用)',
       };
-      /*{
-        "n": 1,
-        "nModified": 1,
-        "ok": 1
-      }*/
+
       model.update({ _id: params.id }, { $set: { soft_name:params.soft_name }}, function(err,up){
         res.json(up);
       });
@@ -72,20 +67,27 @@ const action={
     }
     return opx;
   },
-  typeinfo:function(model,db){
-    console.log('soft_type.delete is open');
+  gettype:function(model,db){
+    console.log('soft_type.gettype is open');
     var opx=function(req,res,next,call){
       var params=Object.assign({},req.query,req.body);
 
       var query={
-        soft_parent_code:params.soft_parent_code,
-        soft_name:params.soft_name||'',
-        //  soft_namedd:'nihao',
-        //  soft_full_name:1,
-        soft_status:1 //'启用状态(0：未启用，1：启用)',
+        soft_status:"1" //'启用状态(0：未启用，1：启用)',
       }
-
-      model.find()
+      if(params.soft_parent_code){
+        query.soft_parent_code=params.soft_parent_code
+      }
+      if(params.soft_name){
+        query.soft_name=params.soft_name
+      }
+      if(params.soft_code){
+        query.soft_code=params.soft_code
+      }
+      console.log('query:',query);
+      model.find(query,function(err,list){
+        res.json(list);
+      })
     }
     return opx;
   },
