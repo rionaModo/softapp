@@ -28,9 +28,7 @@ var  Schema= mongoose.Schema({
   },
   updateTime: {
     type: Date,
-    default: function(){
-      return new Date().getTime()
-    }
+    default: Date.now
   }
 }, { collection: "soft_type" ,versionKey: false,timestamps: { createdAt: 'createTime',updatedAt:'createTime' }}); //
 var model= mongoose.model('soft_type',Schema);

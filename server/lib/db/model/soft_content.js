@@ -26,9 +26,10 @@ var  Schema= mongoose.Schema({
   resource_web:{//官方网站
     type:'String'
   },
-  download_src:{
-    type:'Object'
-  },
+  download_src:[{
+    type:'String',
+    url:'String'
+  }],
  // soft_full_name:'String',
   soft_status:{//资源启用状态
     type:'String',
@@ -40,11 +41,9 @@ var  Schema= mongoose.Schema({
   },
   updateTime: {
     type: Date,
-    default: function(){
-      return new Date().getTime()
-    }
+    default: Date.now
   }
-}, { collection: "soft_type" ,versionKey: false,timestamps: { createdAt: 'createTime',updatedAt:'createTime' }}); //
-var model= mongoose.model('soft_type',Schema);
+}, { collection: "soft_content" ,versionKey: false,timestamps: { createdAt: 'createTime',updatedAt:'createTime' }}); //
+var model= mongoose.model('soft_content',Schema);
 Schema.method.validate=function(){}
 module.exports = model;
