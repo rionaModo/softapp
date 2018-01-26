@@ -27,8 +27,6 @@ var  Schema= mongoose.Schema({
     type:'String'
   },
   download_src:[{
-    type:'String',
-    url:'String'
   }],
  // soft_full_name:'String',
   soft_status:{//资源启用状态
