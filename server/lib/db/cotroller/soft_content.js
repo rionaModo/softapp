@@ -20,7 +20,7 @@ const mongoose=require('mongoose');
 
 const action={
   create:function(model,db){
-    console.log('soft_type.create is open');
+    console.log('soft_content.create is open');
     var opx=function(req,res,next,call){
       var params=Object.assign({},req.query,req.body);
       var data={
@@ -69,7 +69,7 @@ const action={
     return opx;
   },
   update:function(model,db){
-    console.log('soft_type.update is open');
+    console.log('soft_content.update is open');
     var opx=function(req,res,next,call){
       var params=Object.assign({},req.query,req.body);
       var data={
@@ -77,7 +77,7 @@ const action={
         soft_name:params.soft_name
       };
 
-      model.update({ _id: params.id }, { $set: { soft_name:params.soft_name }}, function(err,up){
+      model.update({ _id: params.id }, { $set: { download_src:params.download_src }}, function(err,up){
         res.json(up);
       });
 
