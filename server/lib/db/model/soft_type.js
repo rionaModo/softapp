@@ -20,7 +20,7 @@ var  Schema= mongoose.Schema({
  // soft_full_name:'String',
   soft_status:{
     type:'String',
-    default:0
+    default:1
   }, //'启用状态(0：未启用，1：启用)',
   createTime: {
     type: Date,

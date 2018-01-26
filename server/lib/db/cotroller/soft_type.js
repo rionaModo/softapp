@@ -4,14 +4,18 @@
 
 const mongoose=require('mongoose');
 
-/*{"soft_name":"postceshiwww","soft_status":"1","soft_parent_code":"5a699870316412a0416773b3"}*/
+/*{
+ "soft_name":"postceshiwww",
+ "soft_status":"1",
+ "soft_parent_code":"5a699870316412a0416773b3"
+ }*/
 const action={
   create:function(model,db){
     console.log('soft_type.create is open');
     var opx=function(req,res,next,call){
       var params=Object.assign({},req.query,req.body);
       var data={
-        soft_parent_code:params.soft_parent_code||"0",
+        soft_parent_code:params.soft_parent_code||"1",
         soft_name:params.soft_name||'',
         soft_status:params.soft_status //'启用状态(0：未启用，1：启用)',
       };
