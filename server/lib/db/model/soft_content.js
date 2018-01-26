@@ -1,5 +1,5 @@
 /**
- * 软件分类
+ * 软件内容
  */
 
 var mongoose = require('mongoose')

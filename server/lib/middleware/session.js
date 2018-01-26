@@ -11,7 +11,7 @@ module.exports= function(conf){
   console.log(secret);
 
   return session({
-    name: name,
+    name: name,   //存储在浏览器的sessionid的key值
     secret: secret,  // 用来对session id相关的cookie进行签名
     store: new FileStore(store),  // 本地存储session（文本文件，也可以选择其他store，比如redis的）
     saveUninitialized: false,  // 是否自动保存未初始化的会话，建议false
