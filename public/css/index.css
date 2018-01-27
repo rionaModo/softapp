@@ -1,18 +1,31 @@
-.gengxin{
+.ruan1{
+	width: 1000px;
+	height: 90px;
+	margin:15px auto;
+	border-bottom: dotted 1px #ccc;
+}
+img.img{
+	padding: 5px 0;
+}
+.ruanleft{
+	float: left;
+}
+.ruanjian-right{
+	float: left;
+	width: 900px;
+}
+p.h{
+	display: inline;
+	font-size: 20px;
+	padding: 0 0 0 15px;
+}
+p.h1{
 	
 }
-ul.ff{
-	color: #fff;
-	height: 40px;
-	line-height: 40px;
-	padding:0 0 0 100px;
-	background-color: #436eee;
-}
-li.ggengxin-fubu{
-	list-style: none;
-	float: left;
-	margin: 0 20px 0 0;
-}
-li.ggengxin-fubu a{
-	color: #fff;
+button.button{
+	float: right;
+	background-color: #888;
+	padding: 5px 15px;
+	position: relative;
+	top:-40px;
 }

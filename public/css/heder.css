@@ -1,12 +1,12 @@
 .gengxin{
-	
+	background-color: #436eee
 }
 ul.ff{
 	color: #fff;
 	height: 40px;
 	line-height: 40px;
-	padding:0 0 0 100px;
-	background-color: #436eee;
+	width: 1000px;
+	margin: 0 auto;
 }
 li.ggengxin-fubu{
 	list-style: none;
