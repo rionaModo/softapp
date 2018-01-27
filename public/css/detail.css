@@ -1,0 +1,55 @@
+.boder1{
+	background-color: #ccc;
+	padding: 20px; 0
+}
+.boder2{
+	background-color: #fff;
+	width: 1000px;
+	margin: 0 auto;
+}
+p.mulv{
+	font-size:20px;
+	float: left; 
+}
+.xiazai{
+	width: 1000px;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 auto;
+	padding: 10px 0;
+
+}
+img.img{
+	float: left;
+	width: 30px;
+	height: 30px;
+	padding: 0 30px 0 20px;
+}
+.xiazai-button{
+	width: 1000px;
+	margin: 0 auto;
+	padding: 0 0 0 20px;
+}
+button.button{
+	padding: 15px;
+	font-size: 36px;
+	background-color: #279545;
+	color: #fff;
+}
+p.button-font{
+	padding:5px 0 0 0px;
+}
+.http{
+	padding: 0 0 0 20px;
+}
+.http-font{
+	font-size: 24px;
+	padding: 5px 0px;
+}
+button.dianxin{
+	padding: 5px 5px;
+	margin: 0 10px 10px 0;
+	background-color: #f60;
+	color: #fffdf6;
+
+}
