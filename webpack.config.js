@@ -29,12 +29,10 @@ module.exports = {
       { test: /\.(css|less)$/,
         use:["style-loader","css-loader","less-loader"]
       },
-      { test: /\.(png|jpg)$/,
-        use:[  {
-          loader: 'url-loader',
-          options: {
-            limit: '1024'
-          }
+      { test: /\.(png|jpg|eot|svg|ttf|woff|woff2|png|jpe?g|gif|svg)(\?\S*)?$/,
+        use:[  
+        {
+          loader: 'file-loader'
         }]
       }
 
