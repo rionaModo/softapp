@@ -11,7 +11,7 @@ var Schema = mongoose.Schema
 var  Schema= mongoose.Schema({
   soft_parent_code:{
     type:'String',
-    default:"TE"
+    default:"xy"
   },
   soft_name:{
     type:'String',

@@ -39,24 +39,18 @@ const action={
         if(!err){
           if(list.length>0){
             call({
-              status:0,
-              data:{
                 type:1,
                 msg:'"'+data.resource_name+'"重复'
-              }
-            })
+              })
           }else {
             entity.save((err, fluffy) =>{
               if(!err){
               call(fluffy);
             }else{
               call({
-                status:0,
-                data:{
                   type:-1,
                   msg:'保存失败！'
-                }
-              });
+                });
             }
           })
           }
@@ -75,8 +69,9 @@ const action={
         call(up);
       });
   },
-  gettype:function(model,params,call){
+  search:function(model,params,call){
     console.log('soft_type.gettype is open');
+    params.limit=params.limit||20;
       var query={
         soft_status:"1" //'启用状态(0：未启用，1：启用)',
       }
@@ -90,9 +85,9 @@ const action={
         query.soft_code=params.soft_code
       }
       console.log('query:',query);
-      model.find(query,function(err,list){
+      model.find(query).limit(params.limit).exec(function(err,list){
         call(list);
-      })
+      });
   },
 }
 

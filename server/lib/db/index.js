@@ -14,25 +14,28 @@
 });*/
 
 var db=require('./db');
-module.exports=function(req,res,next){
-  var params=Object.assign({},req.params,req.body);
+module.exports=function(params,call){
+  //var params=Object.assign({},req.params,req.body);
   if(params&&params.c){
     const model=require('./model/'+params.c);
     const cotrollers=require('./cotroller/'+params.c);
     if(params.c&&params.a&&cotrollers[params.a]) {
       var cotroller=cotrollers[params.a]
       cotroller(model,params,function(data,type){
-          res.json(data);
+        call({
+          status:0,
+          data:data
+        });
           console.log('mongodb handle is ok！');
       })
     }else {
-      res.json({
+      call({
         status:-1,
         msg:"没有对应的操作!"
       });
     }
   }else{
-    res.json({
+    call({
       status:-1,
       msg:"没有对应的操作!"
     });

@@ -13,7 +13,7 @@ const action={
   create:function(model,params,call){
     console.log('soft_type.create is open');
       var data={
-        soft_parent_code:params.soft_parent_code||"TE",
+        soft_parent_code:params.soft_parent_code||"xy",
         soft_name:params.soft_name||''
       };
 
@@ -24,12 +24,9 @@ const action={
         if(!err){
           if(list.length>0){
             call({
-              status:0,
-              data:{
                 type:1,
                 msg:'"'+data.soft_name+'"重复'
-              }
-            });
+              });
           }else {
             model.find({soft_parent_code:data.soft_parent_code}).sort({"soft_code":"-1"}).exec(function(err,docs){ //添加查询
               if(!err){
@@ -37,11 +34,11 @@ const action={
                   pre='';
                 var len=data.soft_parent_code.length;
                 if(len==2){
-                  pre='B';
+                  pre='b';
                 }else if(len==6){
-                  pre='C';
+                  pre='c';
                 }else if(len==10){
-                  pre='D';
+                  pre='d';
                 }
                 if(docs.length==0){
                   soft_code=pre+'000'
@@ -65,22 +62,16 @@ const action={
                      call(fluffy);
                   }else{
                     call({
-                      status:0,
-                      data:{
                         type:-1,
                         msg:'保存失败！'
-                      }
-                    });
+                      });
                   }
               })
               }else{
                 call({
-                  status:0,
-                  data:{
                     type:-1,
                     msg:'保存失败！'
-                  }
-                });
+                  });
               }
             })
 
@@ -103,10 +94,9 @@ const action={
 
 
   },
-  gettype:function(model,params,call){
-    console.log('soft_type.gettype is open');
-
-
+  search:function(model,params,call){
+    console.log('soft_type.search is open');
+     params.limit=params.limit||20;
       var query={
         soft_status:"1" //'启用状态(0：未启用，1：启用)',
       }
@@ -119,8 +109,7 @@ const action={
       if(params.soft_code){
         query.soft_code=params.soft_code
       }
-      console.log('query:',query);
-      model.find(query,function(err,list){
+      model.find(query).limit(params.limit).exec(exec(function(err,list){
         call(list);
       })
 

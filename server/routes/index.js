@@ -11,5 +11,9 @@ router.get('*', function(req, res, next) {
 //module.exports = router;
 module.exports = function(req, res, next) {
   console.log('render index is ok');
-      res.render('index', { title: 'Express' });
+
+  var collect=require('../lib/db')({"c":"soft_content","a":"search","limit":10},function(){
+    res.json(data);
+  });
+     // res.render('index', { title: 'Express' });
 };
