@@ -70,20 +70,18 @@ const action={
       });
   },
   search:function(model,params,call){
-    console.log('soft_type.gettype is open');
+    console.log('soft_type.search is open');
     params.limit=params.limit||20;
       var query={
         soft_status:"1" //'启用状态(0：未启用，1：启用)',
       }
-      if(params.soft_parent_code){
-        query.soft_parent_code=params.soft_parent_code
+      if(params.resource_type){
+        query.resource_type=params.resource_type
       }
-      if(params.soft_name){
-        query.soft_name=params.soft_name
+      if(params.resource_name){
+        query.soft_name=params.resource_name
       }
-      if(params.soft_code){
-        query.soft_code=params.soft_code
-      }
+
       console.log('query:',query);
       model.find(query).limit(params.limit).exec(function(err,list){
         call(list);
