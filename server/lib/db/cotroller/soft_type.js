@@ -15,14 +15,14 @@ const action={
     var opx=function(req,res,next,call){
       var params=Object.assign({},req.query,req.body);
       var data={
-        soft_parent_code:params.soft_parent_code||"1",
+        soft_parent_code:params.soft_parent_code||"TE",
         soft_name:params.soft_name||'',
         soft_status:params.soft_status //'启用状态(0：未启用，1：启用)',
       };
-      var entity=new model(data)
-      entity.validate(function(err) {
+
+     /* entity.validate(function(err) {
         console.log(err); // Will tell you that null is not allowed.
-      });
+      });*/
       model.find({soft_parent_code:data.soft_parent_code,soft_name:data.soft_name},function(err,list){
         if(!err){
           if(list.length>0){
@@ -34,20 +34,61 @@ const action={
               }
             });
           }else {
-            entity.save((err, fluffy) =>{
+            model.find({soft_parent_code:data.soft_parent_code}).sort({"soft_code":"-1"}).exec(function(err,docs){
               if(!err){
-              call(fluffy);
-              res.json(fluffy);
-            }else{
-              res.json({
-                status:0,
-                data:{
-                  type:-1,
-                  msg:'保存失败！'
+                var soft_code='',
+                  pre='';
+                var len=data.soft_parent_code.length;
+                if(len==2){
+                  pre='B';
+                }else if(len==6){
+                  pre='C';
+                }else if(len==10){
+                  pre='D';
                 }
-              });
-            }
-          })
+                if(docs.length==0){
+                  soft_code=pre+'000'
+                }else {
+                 soft_code=docs[0].soft_code;
+                  soft_code=(parseInt(soft_code.slice(-3))+1).toString();
+                  if(soft_code.length==1){
+                    soft_code=pre+'00'+soft_code;
+                  }else if(soft_code.length==2){
+                    soft_code=pre+'0'+soft_code;
+                  }else if(soft_code.length==3){
+                    soft_code=pre+soft_code;
+                  }
+                }
+
+
+
+                data.soft_code=data.soft_parent_code+soft_code;
+                var entity=new model(data);
+                entity.save((err, fluffy) =>{
+                  if(!err){
+                  call(fluffy);
+                  res.json(fluffy);
+                }else{
+                  res.json({
+                    status:0,
+                    data:{
+                      type:-1,
+                      msg:'保存失败！'
+                    }
+                  });
+                }
+              })
+              }else{
+                res.json({
+                  status:0,
+                  data:{
+                    type:-1,
+                    msg:'保存失败！'
+                  }
+                });
+              }
+            })
+
           }
         }else {
           console.log('验重失败！');
