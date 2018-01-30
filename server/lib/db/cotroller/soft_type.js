@@ -3,80 +3,100 @@
  */
 
 const mongoose=require('mongoose');
-
+var db = mongoose.connection;
 /*{
  "soft_name":"postceshiwww",
  "soft_status":"1",
  "soft_parent_code":"5a699870316412a0416773b3"
  }*/
 const action={
-  create:function(model,db){
+  create:function(model,params,call){
     console.log('soft_type.create is open');
-    var opx=function(req,res,next,call){
-      var params=Object.assign({},req.query,req.body);
       var data={
-        soft_parent_code:params.soft_parent_code||"1",
-        soft_name:params.soft_name||'',
-        soft_status:params.soft_status //'启用状态(0：未启用，1：启用)',
+        soft_parent_code:params.soft_parent_code||"xy",
+        soft_name:params.soft_name||''
       };
-      var entity=new model(data)
-      entity.validate(function(err) {
+
+     /* entity.validate(function(err) {
         console.log(err); // Will tell you that null is not allowed.
-      });
-      model.find({soft_parent_code:data.soft_parent_code,soft_name:data.soft_name},function(err,list){
+      });*/
+      model.find({soft_parent_code:data.soft_parent_code,soft_name:data.soft_name},function(err,list){ //验重
         if(!err){
           if(list.length>0){
-            res.json({
-              status:0,
-              data:{
+            call({
                 type:1,
                 msg:'"'+data.soft_name+'"重复'
-              }
-            });
-          }else {
-            entity.save((err, fluffy) =>{
-              if(!err){
-              call(fluffy);
-              res.json(fluffy);
-            }else{
-              res.json({
-                status:0,
-                data:{
-                  type:-1,
-                  msg:'保存失败！'
-                }
               });
-            }
-          })
+          }else {
+            model.find({soft_parent_code:data.soft_parent_code}).sort({"soft_code":"-1"}).exec(function(err,docs){ //添加查询
+              if(!err){
+                var soft_code='',
+                  pre='';
+                var len=data.soft_parent_code.length;
+                if(len==2){
+                  pre='b';
+                }else if(len==6){
+                  pre='c';
+                }else if(len==10){
+                  pre='d';
+                }
+                if(docs.length==0){
+                  soft_code=pre+'000'
+                }else {
+                 soft_code=docs[0].soft_code;
+                  soft_code=(parseInt(soft_code.slice(-3))+1).toString();
+                  if(soft_code.length==1){
+                    soft_code=pre+'00'+soft_code;
+                  }else if(soft_code.length==2){
+                    soft_code=pre+'0'+soft_code;
+                  }else if(soft_code.length==3){
+                    soft_code=pre+soft_code;
+                  }
+                }
+                console.log(data);
+                data.soft_code=data.soft_parent_code+soft_code;
+                data.soft_status=1 //'启用状态(0：未启用，1：启用)',
+                var entity=new model(data);
+                entity.save((err, fluffy) =>{ //保存
+                  if(!err){
+                     call(fluffy);
+                  }else{
+                    call({
+                        type:-1,
+                        msg:'保存失败！'
+                      });
+                  }
+              })
+              }else{
+                call({
+                    type:-1,
+                    msg:'保存失败！'
+                  });
+              }
+            })
+
           }
         }else {
           console.log('验重失败！');
         }
       })
-    }
-    return opx;
   },
-  update:function(model,db){
+  update:function(model,params,call){
     console.log('soft_type.update is open');
-    var opx=function(req,res,next,call){
-      var params=Object.assign({},req.query,req.body);
       var data={
-        id:params.id,
+        soft_code:params.soft_code,
         soft_name:params.soft_name
       };
 
-      model.update({ _id: params.id }, { $set: { soft_name:params.soft_name }}, function(err,up){
-        res.json(up);
+      model.update({ soft_code: params.soft_code }, { $set: { soft_name:params.soft_name }}, function(err,up){
+        call(up);
       });
 
-    }
-    return opx;
-  },
-  gettype:function(model,db){
-    console.log('soft_type.gettype is open');
-    var opx=function(req,res,next,call){
-      var params=Object.assign({},req.query,req.body);
 
+  },
+  search:function(model,params,call){
+    console.log('soft_type.search is open');
+     params.limit=params.limit||20;
       var query={
         soft_status:"1" //'启用状态(0：未启用，1：启用)',
       }
@@ -89,12 +109,10 @@ const action={
       if(params.soft_code){
         query.soft_code=params.soft_code
       }
-      console.log('query:',query);
-      model.find(query,function(err,list){
-        res.json(list);
+      model.find(query).limit(params.limit).exec(exec(function(err,list){
+        call(list);
       })
-    }
-    return opx;
+
   },
 }
 

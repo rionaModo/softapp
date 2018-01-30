@@ -11,11 +11,14 @@ var Schema = mongoose.Schema
 var  Schema= mongoose.Schema({
   soft_parent_code:{
     type:'String',
-    default:0
+    default:"xy"
   },
   soft_name:{
     type:'String',
     required:true
+  },
+  soft_code:{
+    type:'String'
   },
  // soft_full_name:'String',
   soft_status:{

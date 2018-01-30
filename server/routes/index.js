@@ -10,6 +10,14 @@ router.get('*', function(req, res, next) {
 
 //module.exports = router;
 module.exports = function(req, res, next) {
+
   console.log('render index is ok');
-      res.render('index', { title: 'Express' });
+  console.log(req.params);
+  var params={"c":"soft_content","a":"search","limit":10}
+  if(!!req.params.code){
+    params.resource_type=req.params.code;
+  }
+  var collect=require('../lib/db')(params,function(data){
+    res.render('index', { softinfo: data });
+  });
 };

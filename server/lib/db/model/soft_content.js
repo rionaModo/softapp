@@ -3,7 +3,7 @@
  */
 
 var mongoose = require('mongoose')
-var Schema = mongoose.Schema
+
 /*
 * soft_code：1电脑安全，2聊天工具，3多媒体，4开发工具
 *
@@ -17,6 +17,11 @@ var  Schema= mongoose.Schema({
     type:'String',
     required:true
   },
+  id: {
+    type: Number,
+    default: 0
+  },
+  icon_url:'String',
   resource_size:{//资源大小 单位M
     type:'String'
   },
@@ -42,6 +47,8 @@ var  Schema= mongoose.Schema({
     default: Date.now
   }
 }, { collection: "soft_content" ,versionKey: false,timestamps: { createdAt: 'createTime',updatedAt:'createTime' }}); //
+
+
 var model= mongoose.model('soft_content',Schema);
-Schema.method.validate=function(){}
+console.log("model.schema==Schema:",model.schema==Schema);
 module.exports = model;
