@@ -21,7 +21,7 @@ module.exports=function(req,res,next){
     const cotrollers=require('./cotroller/'+params.c);
     if(params.c&&params.a&&cotrollers[params.a]) {
       var cotroller=cotrollers[params.a]
-      cotroller(model,params,function(data,params,type){
+      cotroller(model,params,function(data,type){
           res.json(data);
           console.log('mongodb handle is ok！');
       })
