@@ -3,30 +3,27 @@
  */
 
 const mongoose=require('mongoose');
-
+var db = mongoose.connection;
 /*{
  "soft_name":"postceshiwww",
  "soft_status":"1",
  "soft_parent_code":"5a699870316412a0416773b3"
  }*/
 const action={
-  create:function(model,db){
+  create:function(model,params,call){
     console.log('soft_type.create is open');
-    var opx=function(req,res,next,call){
-      var params=Object.assign({},req.query,req.body);
       var data={
         soft_parent_code:params.soft_parent_code||"TE",
-        soft_name:params.soft_name||'',
-        soft_status:params.soft_status //'启用状态(0：未启用，1：启用)',
+        soft_name:params.soft_name||''
       };
 
      /* entity.validate(function(err) {
         console.log(err); // Will tell you that null is not allowed.
       });*/
-      model.find({soft_parent_code:data.soft_parent_code,soft_name:data.soft_name},function(err,list){
+      model.find({soft_parent_code:data.soft_parent_code,soft_name:data.soft_name},function(err,list){ //验重
         if(!err){
           if(list.length>0){
-            res.json({
+            call({
               status:0,
               data:{
                 type:1,
@@ -34,7 +31,7 @@ const action={
               }
             });
           }else {
-            model.find({soft_parent_code:data.soft_parent_code}).sort({"soft_code":"-1"}).exec(function(err,docs){
+            model.find({soft_parent_code:data.soft_parent_code}).sort({"soft_code":"-1"}).exec(function(err,docs){ //添加查询
               if(!err){
                 var soft_code='',
                   pre='';
@@ -59,27 +56,25 @@ const action={
                     soft_code=pre+soft_code;
                   }
                 }
-
-
-
+                console.log(data);
                 data.soft_code=data.soft_parent_code+soft_code;
+                data.soft_status=1 //'启用状态(0：未启用，1：启用)',
                 var entity=new model(data);
-                entity.save((err, fluffy) =>{
+                entity.save((err, fluffy) =>{ //保存
                   if(!err){
-                  call(fluffy);
-                  res.json(fluffy);
-                }else{
-                  res.json({
-                    status:0,
-                    data:{
-                      type:-1,
-                      msg:'保存失败！'
-                    }
-                  });
-                }
+                     call(fluffy);
+                  }else{
+                    call({
+                      status:0,
+                      data:{
+                        type:-1,
+                        msg:'保存失败！'
+                      }
+                    });
+                  }
               })
               }else{
-                res.json({
+                call({
                   status:0,
                   data:{
                     type:-1,
@@ -94,29 +89,23 @@ const action={
           console.log('验重失败！');
         }
       })
-    }
-    return opx;
   },
-  update:function(model,db){
+  update:function(model,params,call){
     console.log('soft_type.update is open');
-    var opx=function(req,res,next,call){
-      var params=Object.assign({},req.query,req.body);
       var data={
-        id:params.id,
+        soft_code:params.soft_code,
         soft_name:params.soft_name
       };
 
-      model.update({ _id: params.id }, { $set: { soft_name:params.soft_name }}, function(err,up){
-        res.json(up);
+      model.update({ soft_code: params.soft_code }, { $set: { soft_name:params.soft_name }}, function(err,up){
+        call(up);
       });
 
-    }
-    return opx;
+
   },
-  gettype:function(model,db){
+  gettype:function(model,params,call){
     console.log('soft_type.gettype is open');
-    var opx=function(req,res,next,call){
-      var params=Object.assign({},req.query,req.body);
+
 
       var query={
         soft_status:"1" //'启用状态(0：未启用，1：启用)',
@@ -132,10 +121,9 @@ const action={
       }
       console.log('query:',query);
       model.find(query,function(err,list){
-        res.json(list);
+        call(list);
       })
-    }
-    return opx;
+
   },
 }
 

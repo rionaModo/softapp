@@ -15,13 +15,14 @@
 
 var db=require('./db');
 module.exports=function(req,res,next){
-  var params=Object.assign({},req.params);
+  var params=Object.assign({},req.params,req.body);
   if(params&&params.c){
     const model=require('./model/'+params.c);
     const cotrollers=require('./cotroller/'+params.c);
     if(params.c&&params.a&&cotrollers[params.a]) {
       var cotroller=cotrollers[params.a]
-      cotroller(model,db)(req,res,next,function(data){
+      cotroller(model,params,function(data,params,type){
+          res.json(data);
           console.log('mongodb handle is ok！');
       })
     }else {

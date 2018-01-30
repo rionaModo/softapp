@@ -18,12 +18,10 @@
 }*/
 
 const mongoose=require('mongoose');
-
+var db = mongoose.connection;
 const action={
-  create:function(model,db){
+  create:function(model,params,call){
     console.log('soft_content.create is open');
-    var opx=function(req,res,next,call){
-      var params=Object.assign({},req.query,req.body);
       var data={
         resource_name:params.resource_name||'',
         resource_type:params.resource_type,
@@ -40,20 +38,19 @@ const action={
       model.find({resource_name:data.resource_name},function(err,list){
         if(!err){
           if(list.length>0){
-            res.json({
+            call({
               status:0,
               data:{
                 type:1,
                 msg:'"'+data.resource_name+'"重复'
               }
-            });
+            })
           }else {
             entity.save((err, fluffy) =>{
               if(!err){
               call(fluffy);
-              res.json(fluffy);
             }else{
-              res.json({
+              call({
                 status:0,
                 data:{
                   type:-1,
@@ -67,30 +64,20 @@ const action={
           console.log('验重失败！');
         }
       })
-    }
-    return opx;
   },
-  update:function(model,db){
+  update:function(model,params,call){
     console.log('soft_content.update is open');
-    var opx=function(req,res,next,call){
       var params=Object.assign({},req.query,req.body);
       var data={
         id:params.id,
         soft_name:params.soft_name
       };
-
       model.update({ _id: params.id }, { $set: { download_src:params.download_src }}, function(err,up){
-        res.json(up);
+        call(up);
       });
-
-    }
-    return opx;
   },
-  gettype:function(model,db){
+  gettype:function(model,params,call){
     console.log('soft_type.gettype is open');
-    var opx=function(req,res,next,call){
-      var params=Object.assign({},req.query,req.body);
-
       var query={
         soft_status:"1" //'启用状态(0：未启用，1：启用)',
       }
@@ -105,10 +92,8 @@ const action={
       }
       console.log('query:',query);
       model.find(query,function(err,list){
-        res.json(list);
+        call(list);
       })
-    }
-    return opx;
   },
 }
 
