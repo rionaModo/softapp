@@ -15,6 +15,7 @@
 
 var db=require('./db');
 module.exports=function(params,call){
+  //console.log(params,call)
   //var params=Object.assign({},req.params,req.body);
   if(params&&params.c){
     const model=require('./model/'+params.c);

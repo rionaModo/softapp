@@ -27,3 +27,15 @@
        "url":"www.baidu.com" //下载地址
      }]
      }
+
+
+
+
+
+
+
+
+
+
+数据查询
+http://localhost:9051/api/soft_content/search
