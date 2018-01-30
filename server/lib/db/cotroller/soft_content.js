@@ -67,7 +67,6 @@ const action={
   },
   update:function(model,params,call){
     console.log('soft_content.update is open');
-      var params=Object.assign({},req.query,req.body);
       var data={
         id:params.id,
         soft_name:params.soft_name

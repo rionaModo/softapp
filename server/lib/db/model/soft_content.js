@@ -17,6 +17,7 @@ var  Schema= mongoose.Schema({
     type:'String',
     required:true
   },
+  icon_url:'String',
   resource_size:{//资源大小 单位M
     type:'String'
   },
