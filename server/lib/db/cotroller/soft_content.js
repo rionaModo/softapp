@@ -9,6 +9,7 @@
   "resource_size":"30M",
   "resource_attr":"免费软件",
   "resource_web":"阿里巴巴",
+  "icon_url":"",
   "download_src":[{
   "type":1,
   "desc":"电信下载",
@@ -29,6 +30,7 @@ const action={
         resource_size:params.resource_size,
         resource_attr:params.resource_attr,
         resource_web:params.resource_web,
+        icon_url:params.icon_url,
         download_src:params.download_src
       };
       var entity=new model(data)
