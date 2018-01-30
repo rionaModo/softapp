@@ -17,7 +17,6 @@ module.exports = function(req, res, next) {
   if(!!req.params.code){
     params.resource_type=req.params.code;
   }
-
   var collect=require('../lib/db')(params,function(data){
     res.render('index', { softinfo: data });
   });

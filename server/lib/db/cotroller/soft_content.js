@@ -22,6 +22,7 @@ var db = mongoose.connection;
 const action={
   create:function(model,params,call){
     console.log('soft_content.create is open');
+
       var data={
         resource_name:params.resource_name||'',
         resource_type:params.resource_type,
@@ -31,11 +32,28 @@ const action={
         icon_url:params.icon_url,
         download_src:params.download_src
       };
-      var entity=new model(data)
+
+      var entity=new model(data);
+
       entity.validate(function(err) {
         console.log(err); // Will tell you that null is not allowed.
       });
-      model.find({resource_name:data.resource_name},function(err,list){
+
+    console.log(entity)
+   model.schema.pre('save', function(next) {
+      var doc = this;
+     console.log('ss',doc)
+      model.findByIdAndUpdate({_id: doc._id}, {$inc: { id: 1} }, function(error, counter) {
+        console.log('counter==entity',counter==entity,counter,entity)
+        if(error)
+          return next(error);
+
+       counter&&(doc.id = counter.id)
+        next();
+      });
+    });
+
+    model.find({resource_name:data.resource_name},function(err,list){
         if(!err){
           if(list.length>0){
             call({
@@ -43,16 +61,17 @@ const action={
                 msg:'"'+data.resource_name+'"重复'
               })
           }else {
-            entity.save((err, fluffy) =>{
-              if(!err){
-              call(fluffy);
-            }else{
-              call({
+              entity.save((err, fluffy) =>{
+                if(!err){
+                call(fluffy);
+                entity={};
+              }else{
+                call({
                   type:-1,
                   msg:'保存失败！'
                 });
-            }
-          })
+              }
+            })
           }
         }else {
           console.log('验重失败！');
