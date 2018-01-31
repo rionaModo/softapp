@@ -20,6 +20,7 @@ module.exports=function(params,call){
   if(params&&params.c){
     const model=require('./model/'+params.c);
     const cotrollers=require('./cotroller/'+params.c);
+    const middleware=require('./middleware/'+params.c);
     if(params.c&&params.a&&cotrollers[params.a]) {
       var cotroller=cotrollers[params.a]
       cotroller(model,params,function(data,type){

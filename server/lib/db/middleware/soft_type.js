@@ -8,24 +8,20 @@
  "soft_status":"1",
  "soft_parent_code":"5a699870316412a0416773b3"
  }*/
-const action={
-  create:function(req,res,call){
-
-  },
-  update:function(model,params,call){
-
-
-
-  },
-  gettype:function(model,params,call){
-    console.log('soft_type.gettype is open');
-
-
-
-
-  },
-}
-
+var mongoose = require('mongoose')
+mongoose.model();
+model.schema.pre('save', function(next) {
+  var doc = this;
+  console.log('ss',doc)
+  model.findByIdAndUpdate({_id: 'entityId'}, {$inc: { id: 1} }, function(error, counter) {
+    if(error)
+      return next(error);
+    if(!counter){
+      model.save({_id:"entityId",id:0})
+    }
+    next();
+  });
+});
 module.exports=action;
 
 

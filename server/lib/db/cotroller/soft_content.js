@@ -39,19 +39,7 @@ const action={
         console.log(err); // Will tell you that null is not allowed.
       });
 
-    console.log(entity)
-   model.schema.pre('save', function(next) {
-      var doc = this;
-     console.log('ss',doc)
-      model.findByIdAndUpdate({_id: doc._id}, {$inc: { id: 1} }, function(error, counter) {
-        console.log('counter==entity',counter==entity,counter,entity)
-        if(error)
-          return next(error);
 
-       counter&&(doc.id = counter.id)
-        next();
-      });
-    });
 
     model.find({resource_name:data.resource_name},function(err,list){
         if(!err){
@@ -62,6 +50,7 @@ const action={
               })
           }else {
               entity.save((err, fluffy) =>{
+                console.log('entity',entity,err);
                 if(!err){
                 call(fluffy);
                 entity={};

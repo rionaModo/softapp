@@ -3,7 +3,7 @@
  */
 
 var mongoose = require('mongoose')
-var Schema = mongoose.Schema
+
 /*
 * soft_code：1电脑安全，2聊天工具，3多媒体，4开发工具
 *
@@ -33,7 +33,9 @@ var  Schema= mongoose.Schema({
     type: Date,
     default: Date.now
   }
-}, { collection: "soft_type" ,versionKey: false,timestamps: { createdAt: 'createTime',updatedAt:'createTime' }}); //
+}, {$inc: {
+  id: 1
+}}, { collection: "soft_type" ,versionKey: false,timestamps: { createdAt: 'createTime',updatedAt:'createTime' }}); //
 var model= mongoose.model('soft_type',Schema);
 Schema.method.validate=function(){}
 module.exports = model;
