@@ -11,25 +11,14 @@
 
 var mongoose = require('mongoose')
 var model=mongoose.model('soft_content');
-
-
-/*exports=function(call){
-  model.findByIdAndUpdate({_id: 'entityId'}, {$inc: { id: 1} }, function(error, counter) {
-    if(error)
-      return next(error);
-    if(!counter){
-      (new model({_id:"entityId",id:0})).save(function(){
-        call&&call();
-      });
-    }else {
-      call&&call();
-    }
-  });
-}*/
-
+var config=require('config');
+var id=config.get('app.mongodb.auto_inc.soft_content');
+if(!!id){
+  console.log('请先添加用于自增存储的数据id');
+}
 model.schema.pre('save', function(next) {
   var doc = this;
-  model.findByIdAndUpdate({_id: '5a713abbfb1ba9620cbaf99b'}, {$inc: { id: 1} }, function(error, counter) {
+  model.findByIdAndUpdate({_id: id}, {$inc: { id: 1} }, function(error, counter) {
     if(error){
       next(error);
       return

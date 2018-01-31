@@ -9,6 +9,9 @@ module.exports = {
         keepalive: '5000',
         poolSize: 4 ,
         autoIndex:false
+      },
+      auto_inc:{
+        soft_content:'5a713abbfb1ba9620cbaf99b'
       }
     },
     request:false,
