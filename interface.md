@@ -20,6 +20,7 @@
        "resource_size":"30M", //软件大小 非必填  string
        "resource_attr":"免费软件", //软件属性 非必填  string
        "resource_web":"阿里巴巴", //软件官网 非必填  string
+       "soft_status:"",  //是否展示该软件  非必填  默认1 展示，0不展示
         "icon_url":"",              //软件图标地址 非必填 string
        "download_src":[{ //软件下载链接 必填  Array
        "type":1,    //链接通道id  1 推荐的 2 其他

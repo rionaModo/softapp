@@ -14,7 +14,7 @@
 {% for item in softinfo.data %}
 	<div class="ruan1">
 		<div class="ruanleft">
-			<img src="/static/images/1.png" class="img">
+			<img src="{{item.icon_url}}" class="img">
 		</div>
 		<div class="ruanjian-right">
 				<p class="h"><a href="#">
@@ -23,7 +23,7 @@
 				大小：{{item.resource_size}}
 				更新时间：2017.3.3 软件类型：{{item.resource_type}}</p>
 				<p>杀毒软件是一款德国著名的杀毒大姐姐电饭锅</p>
-				<button class="button"><a v-bind:href="item.url">下载</a></button>
+				<button class="button"><a href="{{item.url}}">下载</a></button>
 		</div>
 	</div>
 	{% endfor %}

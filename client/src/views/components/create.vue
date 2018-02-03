@@ -88,7 +88,11 @@
 </el-row>
     </li>
     </ul>
-    <el-button type="success" @click=addlist() round>添加地址</el-button>
+    <el-button type="success" @click="addlist" round>添加地址</el-button>
+
+
+
+    <el-row> <el-button type="success" @click="saveData" >添加地址</el-button></el-row>
 </div>
 </template>
 
@@ -130,7 +134,25 @@
      },
      addlist:function(){
        this.items.push( { id:4,text:'',label:"",url:""})
+     },
+     saveData:function(){
+      var data={
+       "resource_name":this.softinfo.soft_name, //软件名 必填  string
+       "resource_type":"222",  //软件分类id 必填  string
+       "resource_size":"30M", //软件大小 非必填  string
+       "resource_attr":"免费软件", //软件属性 非必填  string
+       "resource_web":"阿里巴巴", //软件官网 非必填  string
+        "icon_url":"",              //软件图标地址 非必填 string
+       "download_src":[{ //软件下载链接 必填  Array
+       "type":1,    //链接通道id  1 推荐的 2 其他
+       "desc":"电信下载",  //下载通道描述
+       "url":"www.baidu.com" //下载地址
+     }]
      }
+      this.$http.post('/api/soft_content/create',data).then(function(res){
+        console.log(res.data);
+      })
+    }
     },
     beforeRouteEnter:function(to,from,next){
       next(vm => {
