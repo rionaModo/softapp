@@ -10,7 +10,6 @@
   <el-col :span="10">
   <div class="soft-right">
     <el-input
-        
         placeholder="请输入软件" 
         v-model="softinfo.soft_name"
         clearable >
@@ -18,38 +17,75 @@
   </div>
   </el-col>
 </el-row>
-      
-      大小：
-     <el-input
-      placeholder="请输入软件大小"
-      v-model="softinfo.soft_size"
-      clearable >
-    </el-input>
-      分类：
-      <label>杀毒<el-input
-      placeholder="请输入软件"
-      v-model="softinfo.soft_classify"
-      clearable >
-    </el-input>
-    </label>
-      下载地：
-    <ul><li v-for="(item,i) in items"
-    >
-      <label>  显示名：<el-input
-      placeholder="请输入软件"
+<el-row>  
+  <el-col :span="6">
+    <div class="soft-left1">
+         大小：
+    </div>
+ </el-col>
+  <el-col :span="10">
+  <div class="soft-right1">
+    <el-input
+        placeholder="" 
+        v-model="softinfo.soft_size"
+        clearable >
+      </el-input>
+  </div>
+  </el-col>
+</el-row>
+    <el-row>
+   <el-col :span="6">
+    <div class="soft-left1">
+         分类：
+    </div>
+ </el-col>
+  <el-col :span="10">
+  <div class="soft-right1">
+    <el-select v-model="value" placeholder="请选择">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+  </div>
+  </el-col>
+</el-row>
+  
+    <ul><li v-for="(item,i) in items">
+  <el-row>
+   <el-col :span="6">
+    <div class="soft-left1">
+         显示名：
+    </div>
+ </el-col>
+ <el-col :span="10">
+ <div class="soft-right1">
+ <el-input
+      placeholder=""
       v-model="item.text"
       clearable >
     </el-input>
-    </label><br>
-
-      
-      <label>下载地址：<el-input
+    </div>
+  </el-col>
+</el-row>
+ <el-row>      
+  <el-col :span="6">
+    <div class="soft-left1">
+         下载地址：
+    </div>
+ </el-col>
+ <el-col :span="10">
+ <div class="soft-right1">
+ <el-input
       placeholder="请输入下载地址"
       v-model="item.url"
       clearable>
     </el-input>
-    </label>
-
+  </div>
+</el-col>
+</el-row>
     </li>
     </ul>
     <el-button type="success" @click=addlist() round>添加地址</el-button>
@@ -78,6 +114,14 @@
         {id:2,text:'类型：',label:"",url:"http://"},
         {id:3,text:'ul:',label:"",url:"http://"}
         ],
+        options:[{
+          value:'选项1',
+          label:'杀毒软件'
+        },{
+          value:'选项2',
+          label:'其他软件'
+        }],
+        value:''
       }
     },
     methods:{
@@ -104,7 +148,18 @@
   .soft-left{
   float: right;
   line-height: 40px;
+  margin: 0 0 15px 0;
   }
+  .soft-left1{
+  float: right;
+  line-height: 40px;
+  margin: 0 0 15px 0;
+  }
+  .soft-left2{
+  float: right;
+  line-height: 40px;
+  margin: 0 0 15px 0;
+  };
  }
  
 </style>
