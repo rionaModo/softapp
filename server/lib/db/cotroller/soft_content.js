@@ -29,6 +29,7 @@ const action={
         resource_size:params.resource_size,
         resource_attr:params.resource_attr,
         resource_web:params.resource_web,
+        resource_content:params.resource_content,
         icon_url:params.icon_url,
         download_src:params.download_src
       };
@@ -81,16 +82,19 @@ const action={
     console.log('soft_type.search is open');
     params.limit=params.limit||20;
       var query={
-        soft_status:"1" //'启用状态(0：未启用，1：启用)',
+        soft_status:params.soft_status||"1" //'启用状态(0：未启用，1：启用)',
       }
-      if(params.resource_type){
+      if(params.id){
+        query._id=params.id;
+      }
+       if(params.resource_type){
         query.resource_type=params.resource_type
       }
       if(params.resource_name){
-        query.soft_name=params.resource_name
+        query.resource_name=params.resource_name
       }
 
-      console.log('query:',query);
+      console.log('query:',query,params);
       model.find(query).limit(params.limit).exec(function(err,list){
         call(list);
       });

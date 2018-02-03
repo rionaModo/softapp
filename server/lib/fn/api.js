@@ -6,7 +6,7 @@
 module.exports = function(req, res, next) {
     console.log('api is open');
   var params=req.params;
-  var params=Object.assign({},req.params,req.body);
+  var params=Object.assign({},req.params,req.body,req.query);
   if(params&&params.c){
    var collect=require('../db')(params,function(data){
      res.json(data);

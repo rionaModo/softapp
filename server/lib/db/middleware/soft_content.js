@@ -18,7 +18,7 @@ if(!!id){
 }
 model.schema.pre('save', function(next) {
   var doc = this;
-  model.findByIdAndUpdate({_id: id}, {$inc: { id: 1} }, function(error, counter) {
+  model.findByIdAndUpdate({_id: id}, {$inc: { list_num: 1} }, function(error, counter) {
     if(error){
       next(error);
       return
@@ -26,7 +26,7 @@ model.schema.pre('save', function(next) {
     if(!counter){
       doc.id=1;
     }else {
-      doc.id=counter.id;
+      doc.id=counter.list_num;
       next();
     }
 

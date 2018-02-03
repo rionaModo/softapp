@@ -31,6 +31,9 @@ var  Schema= mongoose.Schema({
   resource_web:{//官方网站
     type:'String'
   },
+   resource_content:{//软件详情
+    type:'String'
+  },
   download_src:[{
   }],
  // soft_full_name:'String',
