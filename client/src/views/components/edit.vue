@@ -170,6 +170,7 @@
       this.items.revise({id:'',text:'',label:'',url:''})
      },
      saveData:function(){
+      debugger;
       var data={
        "resource_name":this.softinfo.soft_name, //软件名 必填  string
        "resource_type":this.softinfo.soft_classify,  //软件分类id 必填  string
@@ -194,8 +195,8 @@
       this.$http.post('/api/soft_content/search',query).then(function(res){
         console.log('searchData',res);
          that.softinfo.soft_name=res.data.data[0].resource_name;
-         that.softinfo.soft_size=res.data.data.resource_size;
-        that.softinfo.soft_classify=res.data.data.resource_classify;
+         that.softinfo.soft_size=res.data.data[0].resource_size;
+        that.softinfo.soft_classify=res.data.data[0].resource_classify;
       })
     }
 
@@ -203,7 +204,7 @@
     beforeRouteEnter:function(to,from,next){
       next(vm => {
         console.log('route',vm.$route);
-      // vm.searchData({"id":"5a754e7a6b9b2f3c0968f2f8"})
+       vm.searchData({"id":vm.$route.query.id})
       })
     }
   }
