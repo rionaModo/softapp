@@ -71,10 +71,35 @@ const action={
   update:function(model,params,call){
     console.log('soft_content.update is open');
       var data={
-        id:params.id,
-        soft_name:params.soft_name
       };
-      model.update({ _id: params.id }, { $set: { download_src:params.download_src }}, function(err,up){
+    if(params.resource_name){
+      data.resource_name=params.resource_name;
+    }
+    if(params.resource_type){
+      data.resource_type=params.resource_type;
+    }
+    if(params.resource_size){
+      data.resource_size=params.resource_size;
+    }
+    if(params.resource_attr){
+      data.resource_attr=params.resource_attr;
+    }
+    if(params.resource_web){
+      data.resource_web=params.resource_web;
+    }
+    if(params.soft_status){
+      data.soft_status=params.soft_status;
+    }
+    if(params.icon_url){
+      data.icon_url=params.icon_url;
+    }
+    if(params.resource_content){
+      data.resource_content=params.resource_content;
+    }
+    if(params.download_src){
+      data.download_src=params.download_src;
+    }
+      model.update({ _id: params.id }, data, function(err,up){
         call(up);
       });
   },
@@ -93,7 +118,13 @@ const action={
       if(params.resource_name){
         query.resource_name=params.resource_name
       }
-
+    if(Object.keys(data).length==0){
+      call({
+        type:-1,
+        msg:'缺少修改参数！'
+      });
+      return
+    }
       console.log('query:',query,params);
       model.find(query).limit(params.limit).exec(function(err,list){
         call(list);
