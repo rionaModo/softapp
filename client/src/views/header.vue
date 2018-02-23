@@ -2,7 +2,7 @@
 <template>
   <div id="header">
    
-  
+
    header
   
   
@@ -18,7 +18,11 @@ export default {
   name: 'Header',
   components: {
     
-  }
+  },
+  data:()=>{
+  console.log(1222);
+return {}
+}
 }
 </script>
 
