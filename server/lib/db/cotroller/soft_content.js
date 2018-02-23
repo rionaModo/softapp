@@ -118,7 +118,7 @@ const action={
       if(params.resource_name){
         query.resource_name=params.resource_name
       }
-    if(Object.keys(data).length==0){
+    if(Object.keys(query).length==0){
       call({
         type:-1,
         msg:'缺少修改参数！'
