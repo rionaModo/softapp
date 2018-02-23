@@ -1,0 +1,17 @@
+{
+  "apps" : [{
+    "script"    : "start.js",
+    "name"      : "prod",
+    "watch"     : false,
+   // "error_file"      : "/f/work/dlopx/log/err.log",
+   // "out_file"        : "/f/work/dlopx/log/out.log",
+  //  "merge_logs"      : true,
+   // "log_date_format" : "YYYY-MM-DD HH:mm Z",
+    "instances": 1,
+    "exec_mode": "cluster",
+    "env": {
+      "NODE_ENV": "prod",
+      "DEBUG": "fa,fa:*"
+    }
+  }]
+}
