@@ -70,6 +70,7 @@
         var that=this;
         this.$http.post('/api/user/login',data).then(function({data,status,statusText}){
           if(status==200&&data.status==0){
+            data=data.data;
             if(!data.type||data.type!=-1){
               that.$message({
                 message: '登录成功',
@@ -79,7 +80,7 @@
                 }
               });
             }else {
-              this.$message({
+              that.$message({
                 message: '登录失败',
                 type: 'error'
               });
