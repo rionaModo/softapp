@@ -63,6 +63,19 @@
     <el-row>
     <el-col :span="6">
       <div class="soft-left1">
+        软件状态：
+      </div>
+    </el-col>
+    <el-col :span="10">
+      <div class="soft-right1">
+        <el-radio class="radio" v-model="softinfo.soft_status" label="1">启用</el-radio>
+        <el-radio class="radio" v-model="softinfo.soft_status" label="0">停用</el-radio>
+      </div>
+    </el-col>
+  </el-row>
+    <el-row>
+    <el-col :span="6">
+      <div class="soft-left1">
         图标链接：
       </div>
     </el-col>
@@ -201,6 +214,7 @@
           soft_name:'',
           soft_size:'',
           soft_classify:'',
+          soft_status:"1",
           "resource_attr":'', //软件属性 非必填  string
           "resource_web":'', //软件官网 非必填  string
           "icon_url":'',
