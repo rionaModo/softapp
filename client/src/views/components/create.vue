@@ -70,7 +70,7 @@
       <ul class="down-list clearfix">
         <li v-for="(item,i) in items" class="border-left">
             <el-row>
-              <el-col :span="6">
+              <el-col :span="5">
                 <div class="soft-left1">
                   地址：
                 </div>
@@ -86,7 +86,7 @@
               </el-col>
             </el-row>
             <el-row>
-              <el-col :span="6">
+              <el-col :span="5">
                 <div class="soft-left1">
                   显示名：
                 </div>
@@ -101,9 +101,10 @@
                 </div>
               </el-col>
             </el-row>
-        </li>
-        <li>
-          <i class="el-icon-circle-plus-outline" @click="addlist"></i>
+          <div class="icon-list">
+            <i class="el-icon-circle-plus-outline" @click="addlist" v-if="items.length==i+1"></i>
+            <i class="el-icon-delete" @click="addlist"></i>
+          </div>
         </li>
       </ul>
 
@@ -142,7 +143,7 @@
         },
         items:[
        { id:1,text:'电信下载1',label:"",url:"http://"},
-        {id:2,text:'类型：',label:"",url:"http://"},
+        //{id:2,text:'类型：',label:"",url:"http://"},
         ],
         options:[{
           value:'选项1',
@@ -245,12 +246,30 @@
   }
   .down-list{
      .border-left{
+       position: relative;
        float: left;
        border: dotted 1px #ccc;
-       width: 300px;
+       width: 350px;
        margin: 0 auto;
        margin-bottom: 10px;
        padding-top: 10px;
+       &:hover{
+         .icon-list{
+           display: block;
+         }
+        }
+       .icon-list{
+         z-index: 2;
+         position: absolute;
+         display: none;
+         right: 5px;
+         top: 10px;
+         i{
+           height: 20px;
+           font-size: 18px;
+           width: 20px;
+         }
+       }
      }
   }
  }
