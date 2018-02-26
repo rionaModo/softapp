@@ -181,7 +181,7 @@
             </el-row>
           <div class="icon-list">
             <i class="el-icon-circle-plus-outline" @click="addlist" v-if="items.length==i+1"></i>
-            <i class="el-icon-delete" @click="addlist"  v-if="i!=0"></i>
+            <i class="el-icon-delete" v-if="i!=0"  @click="deletelist(i)"></i>
           </div>
         </li>
       </ul>
@@ -252,6 +252,9 @@
      addlist:function(){
        this.items.push( { id:4,text:'',label:"",url:""})
      },
+      deletelist:function(i){
+        this.items.splice(i,1);
+      },
      reviselist:function(){
       this.items.revise({id:'',text:'',label:'',url:''})
      },
