@@ -26,7 +26,7 @@
         <el-button
           size="mini"
           @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <router-link :to="{ path: 'edit', query: { id: '5a754e7a6b9b2f3c0968f2f8' }}">编辑</router-link>
+          <router-link :to="{ path: 'edit', query: { id: '5a754e7a6b9b2f3c0968f2f8',name:'this.softinfo.soft_name'}}">编辑</router-link>
         <el-button
           size="mini"
           type="danger"
@@ -51,7 +51,7 @@
       return {
       tableData: [{
             name: '千牛',
-            size: '',
+            size: '30MB',
             classify: '软件',
           },
           ]
@@ -64,18 +64,6 @@
       handleDelete(index, row) {
         console.log(index, row);
       },
-     remove:function(i){
-     this.item[i].selected=false;
-     },
-     changeCount: function(value) {
-        this.$alert('不能为空','错误');
-    },
-     addlist:function(){
-       this.items.push( { id:4,text:'',label:"",url:""})
-     },
-     reviselist:function(){
-      this.items.revise({id:'',text:'',label:'',url:''})
-     },
      saveData:function(){
       var data={
        "resource_name":this.softinfo.soft_name, //软件名 必填  string
@@ -94,12 +82,22 @@
       this.$http.post('/api/soft_content/create',data).then(function(res){
         console.log(res.data);
       })
+    },
+    searchData:function(query){
+      var that=this;
+      this.$http.post('/api/soft_content/search',query).then(function(res){
+        console.log('searchData',res);
+         that.softinfo.soft_name=res.data.data[0].resource_name;
+         that.softinfo.soft_size=res.data.data[0].resource_size;
+        that.softinfo.soft_classify=res.data.data[0].resource_classify;
+      })
     }
 
     },
     beforeRouteEnter:function(to,from,next){
       next(vm => {
-       
+       console.log('route',vm.$route);
+       vm.searchData({"id":vm.$route.query.id})
       })
     }
   }

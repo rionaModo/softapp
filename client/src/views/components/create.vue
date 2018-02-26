@@ -60,32 +60,23 @@
   </div>
   </el-col>
 </el-row>
-  
-    <ul><li v-for="(item,i) in items">
-  <el-row>
-   <el-col :span="6">
-    <div class="soft-left1">
-         显示名：
-    </div>
- </el-col>
- <el-col :span="10">
- <div class="soft-right1">
- <el-input
-      placeholder=""
-      v-model="item.text"
-      clearable >
-    </el-input>
-</div>
-  </el-col>
-
-</el-row>
- <el-row>      
-  <el-col :span="6">
+  <el-row> 
+ <el-col :span="6">
     <div class="soft-left1">
          下载地址：
     </div>
  </el-col>
- <el-col :span="10">
+ </el-row>
+    <ul><li v-for="(item,i) in items">
+    
+   <div class="border-left">  
+   <el-row> 
+  <el-col :span="6">
+    <div class="soft-left1">
+         地址：
+    </div>
+ </el-col>
+ <el-col :span="15">
  <div class="soft-right1">
  <el-input
       placeholder="请输入下载地址"
@@ -94,17 +85,30 @@
     </el-input>
   </div>
 </el-col>
+</el-row>
+<el-row>
 <el-col :span="6">
-    <div class="button-right">
-    <el-row> <el-button type="success" @click="reviselist" round>编辑</el-button></el-row>
+    <div class="soft-left1">
+         显示名：
+    </div>
+ </el-col>
+ <el-col :span="15">
+ <div class="soft-right1">
+ <el-input
+      placeholder=""
+      v-model="item.text"
+      clearable >
+    </el-input>
 </div>
-</el-col>
+  </el-col>
+  </el-row>
+  </div>
 </el-row>
     </li>
     </ul>
     <el-col :span="6">
     <div class="button-left">
-    <el-button type="success" @click="addlist" round>添加地址</el-button>
+    <i class="el-icon-circle-plus-outline" @click="addlist"></i>
     </div>
     </el-col>
     <el-col :span="6">
@@ -139,7 +143,6 @@
         items:[
        { id:1,text:'电信下载1',label:"",url:"http://"},
         {id:2,text:'类型：',label:"",url:"http://"},
-        {id:3,text:'ul:',label:"",url:"http://"}
         ],
         options:[{
           value:'选项1',
@@ -194,8 +197,8 @@
       this.$http.post('/api/soft_content/search',query).then(function(res){
         console.log('searchData',res);
          that.softinfo.soft_name=res.data.data[0].resource_name;
-         that.softinfo.soft_size=res.data.data.resource_size;
-        that.softinfo.soft_classify=res.data.data.resource_classify;
+         that.softinfo.soft_size=res.data.data[0].resource_size;
+        that.softinfo.soft_classify=res.data.data[0].resource_classify;
       })
     }
 
@@ -203,7 +206,7 @@
     beforeRouteEnter:function(to,from,next){
       next(vm => {
         console.log('route',vm.$route);
-      // vm.searchData({"id":"5a754e7a6b9b2f3c0968f2f8"})
+      vm.searchData({"id":"5a754e7a6b9b2f3c0968f2f8"})
       })
     }
   }
@@ -235,6 +238,14 @@
   .item{
     border: red;
     color: red;
+  }
+  .border-left{
+    border: dotted 1px #ccc;
+    width: 300px;
+     margin: 0 auto;
+  }
+  .button-left{
+
   }
  }
  
