@@ -23,8 +23,8 @@ router.use(['/search/:code.html','/search.html'],require('./routes/index'));
 router.use(['/detail','/detail.htm','/detail.html'],require('./routes/detail'));
 router.use(['/detail/list_:id.html','/detail.html'],require('./routes/detail'));
 
+router.use('/login',require('./routes/login'));
 router.use(require('./routes/vue'));
-
 
 
 //app.use('/VC', contro);
