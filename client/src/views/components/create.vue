@@ -66,51 +66,51 @@
          下载地址：
     </div>
  </el-col>
- </el-row>
-    <ul><li v-for="(item,i) in items">
-    
-   <div class="border-left">  
-   <el-row> 
-  <el-col :span="6">
-    <div class="soft-left1">
-         地址：
-    </div>
- </el-col>
- <el-col :span="15">
- <div class="soft-right1">
- <el-input
-      placeholder="请输入下载地址"
-      v-model="item.url"
-      clearable>
-    </el-input>
-  </div>
-</el-col>
-</el-row>
-<el-row>
-<el-col :span="6">
-    <div class="soft-left1">
-         显示名：
-    </div>
- </el-col>
- <el-col :span="15">
- <div class="soft-right1">
- <el-input
-      placeholder=""
-      v-model="item.text"
-      clearable >
-    </el-input>
-</div>
-  </el-col>
-  </el-row>
-  </div>
-</el-row>
-    </li>
-    </ul>
-    <el-col :span="6">
-    <div class="button-left">
-    <i class="el-icon-circle-plus-outline" @click="addlist"></i>
-    </div>
+    <el-col :span="17">
+      <ul class="down-list clearfix">
+        <li v-for="(item,i) in items" class="border-left">
+            <el-row>
+              <el-col :span="6">
+                <div class="soft-left1">
+                  地址：
+                </div>
+              </el-col>
+              <el-col :span="15">
+                <div class="soft-right1">
+                  <el-input
+                      placeholder="请输入下载地址"
+                      v-model="item.url"
+                      clearable>
+                  </el-input>
+                </div>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="6">
+                <div class="soft-left1">
+                  显示名：
+                </div>
+              </el-col>
+              <el-col :span="15">
+                <div class="soft-right1">
+                  <el-input
+                      placeholder=""
+                      v-model="item.text"
+                      clearable >
+                  </el-input>
+                </div>
+              </el-col>
+            </el-row>
+        </li>
+        <li>
+          <i class="el-icon-circle-plus-outline" @click="addlist"></i>
+        </li>
+      </ul>
+
     </el-col>
+ </el-row>
+
+
     <el-col :span="6">
     <div class="button-right">
     <el-row> <el-button type="success" @click="saveData" round>完成</el-button></el-row>
@@ -206,7 +206,7 @@
     beforeRouteEnter:function(to,from,next){
       next(vm => {
         console.log('route',vm.$route);
-      vm.searchData({"id":"5a754e7a6b9b2f3c0968f2f8"})
+     // vm.searchData({"id":"5a754e7a6b9b2f3c0968f2f8"})
       })
     }
   }
@@ -239,13 +239,19 @@
     border: red;
     color: red;
   }
-  .border-left{
-    border: dotted 1px #ccc;
-    width: 300px;
-     margin: 0 auto;
-  }
+
   .button-left{
 
+  }
+  .down-list{
+     .border-left{
+       float: left;
+       border: dotted 1px #ccc;
+       width: 300px;
+       margin: 0 auto;
+       margin-bottom: 10px;
+       padding-top: 10px;
+     }
   }
  }
  
