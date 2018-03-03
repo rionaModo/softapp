@@ -13,13 +13,6 @@ router.get('*', function(req, res, next) {
 
 //module.exports = router;
 module.exports = function(req, res, next) {
-  console.log('render vue is ok');
-  if(!!req.session&&req.session.user!=null){
-    console.log('session.user login is oks');
-    res.render('vue', { title: 'Express' });
-  }else {
-    console.log('render no login is ok');
-    res.redirect('/login');
-  }
-
+  console.log('render page login is ok');
+  res.render('vue', { title: 'login' });
 };

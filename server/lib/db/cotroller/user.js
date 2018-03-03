@@ -2,22 +2,24 @@
 const mongoose=require('mongoose');
 //var db = mongoose.connection;
 const action={
-  index:function(Schema){
-   var opx=function(req,res,next,call) {
-  //  res.json(fluffy);
-    return opx;
-   }
-  },
-   userInfo:function(model,db){
-       console.log('userInfo is open');
-    var users=model;
-    var opx=function(req,res,next,call){
-     users.find(function (err, fluffy) {
-      call(fluffy);
-      res.json(fluffy);
-     })
-    }
-    return opx;
+   login:function(model,params,call){
+    console.log('user login is ok');
+    var data={
+     userAccount:params.userAccount,
+     password:params.password
+    };
+
+    var entity=new model(data);
+    model.find(data,'userName userAccount',function(err,list){
+     if(!err&&list.length>0){
+      call(list)
+     }else {
+      call({
+       type:-1,
+       msg:'登录失败'
+      })
+     }
+    })
    }
 }
 

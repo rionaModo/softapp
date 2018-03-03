@@ -6,10 +6,12 @@ import Message from './src/views/components/message.vue'
 import Create from './src/views/components/create.vue'
 import List from './src/views/components/list.vue'
 import Edit from './src/views/components/edit.vue'
+import Login from './src/views/components/login.vue'
 module.exports= [
     { path: '/foo', component: About },
     { path: '/bar', component: Message },
     { path: '/create', component: Create },
      { path: '/edit', component: Edit },
-    { path: '/list', component: List }
+    { path: '/list', component: List },
+    { path: '/login', component: Login }, // 登录
   ]

@@ -17,13 +17,16 @@ var db=require('./db');
 module.exports=function(params,call){
   //console.log(params,call)
   //var params=Object.assign({},req.params,req.body);
+  console.log('mongodb handle start is ok！',params);
   if(params&&params.c){
     const model=require('./model/'+params.c);
     const cotrollers=require('./cotroller/'+params.c);
-    const middleware=require('./middleware/'+params.c);
+    //const middleware=require('./middleware/'+params.c);
+
     if(params.c&&params.a&&cotrollers[params.a]) {
       var cotroller=cotrollers[params.a]
       cotroller(model,params,function(data,type){
+
         call({
           status:0,
           data:data

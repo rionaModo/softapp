@@ -55,7 +55,7 @@ eg：{
 
 
 数据查询
- interface： http://localhost:9051/api/soft_content/
+ interface： http://localhost:9051/api/soft_content/update
 method：post
   content-type：json
 
