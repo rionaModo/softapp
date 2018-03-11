@@ -26,12 +26,12 @@ module.exports=function(params,call){
     if(params.c&&params.a&&cotrollers[params.a]) {
       var cotroller=cotrollers[params.a]
       cotroller(model,params,function(data,type){
-
-        call({
-          status:0,
-          data:data
-        });
-          console.log('mongodb handle is ok！');
+        let dsa={
+              status:0,
+                  data:data
+          }
+        call(dsa);
+          console.log('mongodb handle is ok！',dsa);
       })
     }else {
       call({

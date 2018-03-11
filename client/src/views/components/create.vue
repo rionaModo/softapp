@@ -10,7 +10,7 @@
   <el-col :span="10">
   <div class="soft-right">
     <el-input 
-      v-bind:value=good v-on:blur="changeCount(value)"
+      v-on:blur="changeCount(value)"
         placeholder="请输入软件" 
         v-model="softinfo.soft_name" 
         clearable >
@@ -277,7 +277,7 @@
               message: '保存成功',
               type: 'success',
               onClose:function(){
-                this.$router.push({ path: '/list' })
+                  that.$router.push({ path: '/list' })
               }
             });
 
@@ -289,11 +289,18 @@
     },
     searchData:function(query){
       var that=this;
-      this.$http.post('/api/soft_content/search',query).then(function(res){
-        console.log('searchData',res);
-         that.softinfo.soft_name=res.data.data[0].resource_name;
-         that.softinfo.soft_size=res.data.data[0].resource_size;
-        that.softinfo.soft_classify=res.data.data[0].resource_classify;
+      this.$http.post('/api/soft_content/search',query).then(function({data:{data,status},status:hstatus,statusText}){
+          if(hstatus==200&&status==0){
+              if(data.length==0)return
+              that.softinfo.soft_name=data[0].resource_name;
+              that.softinfo.soft_size=data[0].resource_size;
+              that.softinfo.soft_classify=data[0].resource_classify;
+              that.softinfo.resource_attr=data[0].resource_attr;
+              that.softinfo.resource_web=data[0].resource_web;
+              that.softinfo.icon_url=data[0].icon_url;
+              that.softinfo.resource_content=data[0].resource_content;
+              that.items=data[0].download_src;
+          }
       })
     }
 

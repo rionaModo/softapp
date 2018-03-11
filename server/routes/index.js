@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
 
   console.log('render index is ok');
   console.log(req.params);
-  var params={"c":"soft_content","a":"search","limit":100}
+  var params={"c":"soft_content","a":"search","limit":100,soft_status:1}
   if(!!req.params.code){
     params.resource_type=req.params.code;
   }

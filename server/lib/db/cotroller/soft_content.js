@@ -68,8 +68,8 @@ const action={
         }
       })
   },
-  update:function(model,params,call){
-    console.log('soft_content.update is open');
+  edit:function(model,params,call){
+    console.log('soft_content.edit is open');
       var data={
       };
     if(params.resource_name){
@@ -104,13 +104,16 @@ const action={
       });
   },
   search:function(model,params,call){
-    console.log('soft_type.search is open');
-    params.limit=params.limit||20;
+    console.log('soft_content.search is open');
       var query={
-        soft_status:params.soft_status||"1" //'启用状态(0：未启用，1：启用)',
+          // soft_status:params.soft_status||"1" //'启用状态(0：未启用，1：启用)',
       }
+      var limit=params.limit||20;
       if(params.id){
         query._id=params.id;
+      }
+      if(params.sid){
+          query.id=params.sid;
       }
        if(params.resource_type){
         query.resource_type=params.resource_type
@@ -119,14 +122,14 @@ const action={
         query.resource_name=params.resource_name
       }
     if(Object.keys(query).length==0){
-      call({
+     /* call({
         type:-1,
-        msg:'缺少修改参数！'
+        msg:'缺少请求参数！'
       });
-      return
+      return*/
     }
       console.log('query:',query,params);
-      model.find(query).limit(params.limit).exec(function(err,list){
+      model.find(query).limit(limit).exec(function(err,list){
         call(list);
       });
   },
