@@ -49,7 +49,7 @@ eg：{
        "resource_type":"222",  //软件分类id 必填  string
        "id":"5a754e7a6b9b2f3c0968f2f8", //软件大小 非必填  string
        "limit":10   //一次请求多少数据 非必填  number  默认20
-       
+       "pageIndex":1 //  当前页
      }
      
 
