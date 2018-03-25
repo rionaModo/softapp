@@ -19,11 +19,12 @@
         label="分类"
         width="180">
       </el-table-column>
-      <el-table-column
-        prop="clas"
-        label="编辑">
+       <el-table-column>
         <template slot-scope="scope">
-          <router-link :to="{ path: 'edit', query: { id: scope.row._id,name:scope.row.resource_name}}">编辑</router-link>
+         <el-button
+          size="mini"
+          @click="handleEdit(scope.$index, scope.row)">
+          <router-link :to="{ path: 'edit', query: { id: scope.row._id,name:scope.row.resource_name}}">编辑</router-link></el-button>
         <el-button
           size="mini"
           type="danger"
@@ -37,8 +38,6 @@
 
 <script>
 
- 
-
   export default {
     name: 'Create',
     components: {
@@ -50,6 +49,7 @@
             name: '千牛',
             size: '30MB',
             classify: '软件',
+            _id:''
           },
           ]
         }
@@ -64,7 +64,8 @@
     searchData(query){
       var resData=query;
       var that=this;
-      this.$http.post('/api/soft_content/search',resData).then(function({data,status,statusText}){
+      this.$http.post('/api/soft_content/search',resData).then(function({data,status,statusText}){//{data,status,statusText}
+
        if(status==200&&data.status==0) {
            that.tableData=data.data
        }

@@ -4,7 +4,7 @@
 <el-row>
   <el-col :span="6">
     <div class="soft-left">
-         软件名：
+      <span class="soft-left0">*&nbsp &nbsp </span>软件名:
     </div>
  </el-col>
   <el-col :span="10">
@@ -271,18 +271,17 @@
      }
        var that=this;
       this.$http.post('/api/soft_content/create',data).then(function({data,status,statusText}){
-        if(status==200&&data.status==0){
-          if(!data.type||data.type!=0){
-            that.$message({
-              message: '保存成功',
-              type: 'success',
-              onClose:function(){
-                  that.$router.push({ path: '/list' })
+          if(status==200&&data.status==0){
+            if(!data.type||data.type!=0){
+              that.$message({
+                message: '保存成功',
+                type: 'success',
+                onClose:function(){
+                    that.$router.push({ path: '/list' })
+                }
+              });
               }
-            });
-
-          }
-        }
+            }
         console.log(res);
        
       })
@@ -316,6 +315,10 @@
 </script>
 
 <style scoped lang="less">
+.soft-left0{
+    color: red;
+    font-weight:bold 
+}
  .soft-about{
   width: 1000px;
   margin: 0 auto;
@@ -323,6 +326,9 @@
   float: right;
   line-height: 40px;
   margin: 0 0 15px 0;
+  }
+  .soft-left3{
+  color:red;
   }
   .soft-left1{
   float: right;

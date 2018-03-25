@@ -3,7 +3,7 @@
         <el-row>
             <el-col :span="6">
                 <div class="soft-left">
-                    软件名：
+                    <span class="soft-left0">*&nbsp &nbsp </span>软件名：
                 </div>
             </el-col>
             <el-col :span="10">
@@ -266,7 +266,8 @@
                   "resource_web":this.softinfo.resource_web, //软件官网 非必填  string
                   "icon_url":this.softinfo.icon_url,              //软件图标地址 非必填 string
                   "resource_content":this.softinfo.resource_content,//软件详情 非必填  strin
-                  "download_src":this.items
+                  "download_src":this.items,
+                  "soft_status":this.softinfo.soft_status
               }
               var that=this;
               this.$http.post('/api/soft_content/edit',data).then(function({data,status,statusText}){
@@ -297,6 +298,7 @@
                       that.softinfo.resource_web=data[0].resource_web;
                       that.softinfo.icon_url=data[0].icon_url;
                       that.softinfo.resource_content=data[0].resource_content;
+                      that.softinfo.soft_status=data[0].soft_status; 
                       that.items=data[0].download_src;
                   }
               })
@@ -314,6 +316,10 @@
 </script>
 
 <style scoped lang="less">
+.soft-left0{
+    color: red;
+    font-weight:bold 
+}
     .soft-about{
         width: 1000px;
         margin: 0 auto;
