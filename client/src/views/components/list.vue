@@ -1,6 +1,20 @@
 
 <template>
 <div  class="soft-list">
+  <div class="soousuo">
+  <el-col :span="6">查询：
+  </el-col>
+  <el-col :span="10">
+    <el-input
+        placeholder="请输入内容"
+        prefix-icon="el-icon-search"
+        v-model="input21">
+    </el-input>
+    </el-col>
+    </div>
+    <el-col :span="6">
+  </el-col>
+    <el-col :span="10"
      <el-table
       :data="tableData"
       style="width: 100%">
@@ -33,6 +47,17 @@
       </el-table-column>
     </el-table>
       
+    <div class="block">
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="query.pageIndex"
+      :page-sizes="[10, 20, 30, 40]"
+      :page-size="query.limit"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="400">
+    </el-pagination>
+  </div>
 </div>
 </template>
 
@@ -45,6 +70,11 @@
     },
     data:function () {
       return {
+        query:{
+          limit:20,
+          pageIndex:1
+        },
+
       tableData: [{
             name: '千牛',
             size: '30MB',
@@ -67,23 +97,34 @@
       this.$http.post('/api/soft_content/search',resData).then(function({data,status,statusText}){//{data,status,statusText}
 
        if(status==200&&data.status==0) {
-           that.tableData=data.data
+           that.tableData=data.data.data;
+           var total=data.data.total;
+
        }
       })
-    }
+    },
+
+   handleSizeChange(val) {     
+        this.query.limit=val;
+        this.query.pageIndex=1;
+        this.searchData(this.query);
+      },
+      handleCurrentChange(val) {
+        this.query.pageIndex=val;
+        this.searchData(this.query)
+      }
 
     },
     beforeRouteEnter(to,from,next){
       next(vm => {
        console.log('route',vm.$route);
-       var query={
-           "limit":20   //一次请求多少数据 非必填  number  默认20
-       }
-       vm.searchData(query)
+       
+       vm.searchData(vm.query)
       })
-    }
-  }
+    },
 
+
+    }
 </script>
 
 <style scoped lang="less">
