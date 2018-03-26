@@ -108,7 +108,9 @@ const action={
       var query={
           // soft_status:params.soft_status||"1" //'启用状态(0：未启用，1：启用)',
       }
-      var limit=params.limit||20;
+     var limit=params.limit||20;
+    //  limit=2;
+      var pageIndex=params.pageIndex||1;
       if(params.id){
         query._id=params.id;
       }
@@ -121,6 +123,7 @@ const action={
       if(params.resource_name){
         query.resource_name=params.resource_name
       }
+
     if(Object.keys(query).length==0){
      /* call({
         type:-1,
@@ -128,10 +131,14 @@ const action={
       });
       return*/
     }
+
+
       console.log('query:',query,params);
-      model.find(query).limit(limit).exec(function(err,list){
-        call(list);
-      });
+     model.count(query,function (err,count) {
+         model.find(query).skip(limit*(pageIndex-1)).limit(limit).exec(function(err,list){
+             call({total:count,data:list,pageIndex:pageIndex,pageSize:limit});
+         })
+      })
   },
 }
 

@@ -31,7 +31,7 @@ module.exports=function(params,call){
                   data:data
           }
         call(dsa);
-          console.log('mongodb handle is ok！',dsa);
+         // console.log('mongodb handle is ok！',dsa);
       })
     }else {
       call({
