@@ -11,7 +11,8 @@ var mongoose = require('mongoose')
 var  Schema= mongoose.Schema({
   soft_parent_code:{
     type:'String',
-    default:"xy"
+    default:"0",
+    required:true
   },
   soft_name:{
     type:'String',
@@ -23,7 +24,7 @@ var  Schema= mongoose.Schema({
  // soft_full_name:'String',
   soft_status:{
     type:'String',
-    default:1
+    default:"1"
   }, //'启用状态(0：未启用，1：启用)',
   createTime: {
     type: Date,

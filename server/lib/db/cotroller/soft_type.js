@@ -13,10 +13,24 @@ const action={
   create:function(model,params,call){
     console.log('soft_type.create is open');
       var data={
-        soft_parent_code:params.soft_parent_code||"xy",
+        soft_parent_code:params.soft_parent_code||"0",
         soft_name:params.soft_name||''
       };
-
+      data.soft_status=params.soft_status||"0";
+      if(params.soft_parent_code==''){
+          call({
+              type:-1,
+              msg:'父分类id不能为空！'
+          });
+          return
+      }
+      if(params.soft_name==''){
+          call({
+              type:-1,
+              msg:'分类名不能为空！'
+          });
+          return
+      }
      /* entity.validate(function(err) {
         console.log(err); // Will tell you that null is not allowed.
       });*/
