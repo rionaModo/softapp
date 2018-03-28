@@ -22,6 +22,8 @@ router.use(['/$','/index.htm','/index.html'],require('./routes/index'));
 router.use(['/search/:code.html','/search.html'],require('./routes/index'));
 router.use(['/detail','/detail.htm','/detail.html'],require('./routes/detail'));
 router.use(['/detail/list_:id.html','/detail.html'],require('./routes/detail'));
+router.use('/hy/:page.html',require('./routes/hy'));
+
 
 router.use('/login',require('./routes/login'));
 router.use(require('./routes/vue'));
