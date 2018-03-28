@@ -44,13 +44,45 @@
 method：post
   content-type：json
 
-eg：{
+eg：请求参数
+{
        "resource_name":"千牛", //软件名 必填  string
        "resource_type":"222",  //软件分类id 必填  string
        "id":"5a754e7a6b9b2f3c0968f2f8", //软件大小 非必填  string
-       "limit":10   //一次请求多少数据 非必填  number  默认20
+       "limit":10   //一次分页请求多少数据 非必填  number  默认20
        "pageIndex":1 //  当前页
      }
+返回数据：
+
+{
+    "status": 0, // 请求状态 0 成功 -1 失败
+    "data": {
+        "data": [{
+                  "_id": "5a9ac00fc8de31d8e5273d10",
+                  "createTime": "2018-03-03T15:32:31.000Z",
+                  "resource_name": "腾讯电脑管家",
+                  "resource_type": "选项1",
+                  "resource_size": "52M",
+                  "resource_attr": "免费",
+                  "resource_web": "腾讯",
+                  "resource_content": "使用",
+                  "icon_url": "http://www.xiazaiba.com/uploadfiles/ico/2016/0630/thumb_48_48_2016063017011935148.png",
+                  "updateTime": "2018-03-03T15:32:31.693Z",
+                  "soft_status": "1",
+                  "download_src": [{"id": 1, "desc": "电信下载1444", "label": "", "url": "http://呃呃呃"}],
+                  "id": 0
+               }],
+    "pageIndex": 1, //当前第几页
+    "pageSize": 20, //每页多少条
+    "total": 100  //总共有多少条数据
+    }
+}
+以前的
+{
+    "status": 0, // 请求状态 0 成功 -1 失败
+    "data": [{}]
+
+}
      
 
 
