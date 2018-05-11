@@ -1,9 +1,10 @@
 
 <template>
   <div id="header">
-   
+header
+    <router-link :to="{ path: 'create'}">创建</router-link>
+    <router-link :to="{ path: 'list'}">列表</router-link>
 
-   header
   
   
   
