@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app-7">
+  <ol>
+    <todo-item
+        v-for="item in groceryList"
+        v-bind:todo="item"
+        v-bind:key="item.id">
+    </todo-item>
+  </ol>
+  <todo-a href="ssshred">||sot</todo-a>
+  <todo-b message="messages"><header>stodo-b</header></todo-b>
+</div>
+
+<script>
+
+
+  Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>{{ todo.text }}</li>'
+  })
+  Vue.component('todo-a', {
+    props: ['url'],
+    template: '<a :href="url">ssss<slot></slot></a>'
+  })
+  Vue.component('todo-b', {
+   functional: true,
+    props: ['message'],
+    render: function (createElement,selfs) {
+      let self=selfs;
+      console.log('this.$slots.default',self);
+      return createElement('div', self.$slots.default);
+
+      // `<div><slot :text="message"></slot></div>`
+      return createElement('div', [
+        this.$scopedSlots.default({
+          text: this.message
+        })
+      ])
+    }
+  })
+  var app7 = new Vue({
+    el: '#app-7',
+    data: {
+      groceryList: [
+        { id: 0, text: '蔬菜' },
+        { id: 1, text: '奶酪' },
+        { id: 2, text: '随便其它什么人吃的东西' }
+      ]
+    }
+  })
+
+</script>
+</body>
+</html>
